@@ -20,6 +20,14 @@ nav = [
     { "About" = "about.md" },
 ]
 
+# Updates (blog) generation for the zensical-updates sidecar (a namespace
+# zensical itself ignores). Posts live in updates/; the generated section is
+# written to docs/updates/ (gitignored) by `zensical-updates build` before the
+# site build.
+[project.extra.zensical_updates]
+base = "updates"
+source = "updates"
+
 # ----------------------------------------------------------------------------
 # Theme
 # ----------------------------------------------------------------------------

@@ -64,16 +64,20 @@ content outlives the fellowship as a public record.
 
 ## Conventions
 
-- Update posts live flat at `docs/updates/<slug>.md` and render at
-  `/updates/<slug>/` (the on-disk path is the URL, so no date prefix in the
-  filename and no `posts/` subdir). Put `date` and `categories` in YAML front
-  matter as block lists (`- weekly-update`), not flow lists (`[weekly-update]`):
-  zensical's strict link check reads `[x]` in front matter as an unresolved
-  Markdown reference link and fails the build. Allowed categories:
-  `weekly-update`, `project-update`, `news`.
+- Update posts live at `updates/<slug>.md` in the committed source tree, outside
+  `docs/`. The `zensical-updates build` pre-build step copies each to
+  `docs/updates/<slug>.md` and renders it at `/updates/<slug>/`, so the file stem
+  is the URL segment: no date prefix in the filename, no `posts/` subdir. The
+  generated `docs/updates/` tree is build output and is gitignored. Put `date`
+  and `categories` in YAML front matter as block lists (`- weekly-update`), not
+  flow lists (`[weekly-update]`): zensical's strict link check reads `[x]` in
+  front matter as an unresolved Markdown reference link and fails the build.
+  Allowed categories: `weekly-update`, `project-update`, `news`.
 - Pin GitHub Actions to commit SHAs. Re-verify the pins when CI lands, since they
   go stale.
-- Run `uv run zensical serve` for local preview; `uv run zensical build --clean
+- Run `uv run zensical-updates build` before previewing or building, so the
+  generated `docs/updates/` exists. Use `uv run zensical serve` for local
+  preview; `uv run zensical-updates build && uv run zensical build --clean
   --strict` is the gate.
 
 ## Writing style

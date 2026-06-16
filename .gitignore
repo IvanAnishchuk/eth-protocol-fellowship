@@ -1,6 +1,6 @@
 # Build output
 site/
-docs/.bloggen/
+docs/updates/
 
 # Local-only handoff / notes (this repo is public; keep private cross-refs here)
 HANDOFF.local.md

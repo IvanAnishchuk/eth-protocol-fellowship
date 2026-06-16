@@ -46,7 +46,7 @@
 
   <!-- title + subtitle (replaced per page by the build step) -->
   <text x="80" y="332" fill="#F2F3FB" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="800">Dev Update, Week 0</text>
-  <text x="80" y="410" fill="#9AA0C6" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="500">Formal verification of Ethereum SSZ in Lean 4</text>
+  <text x="80" y="410" fill="#9AA0C6" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="500">Biweekly dev updates from Cohort Seven</text>
 
   <!-- footer -->
   <rect x="80" y="520" width="70" height="6" rx="3" fill="url(#brand)"/>

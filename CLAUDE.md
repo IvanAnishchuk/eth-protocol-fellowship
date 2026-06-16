@@ -34,9 +34,10 @@ content outlives the fellowship as a public record.
 
 - **zensical**, the static site generator from the Material for MkDocs team, and
   Ivan's house pattern (`cuere`, `oauth`, `nozkash/docs` all use it). Config lives
-  in `zensical.toml`. Build with `uv run --no-sync zensical build --clean
-  --strict`, output to `site/`. Copy the theme, palette, features, and
-  markdown-extension block from `~/src/IvanAnishchuk/cuere/zensical.toml`.
+  in `zensical.toml`. Build with `uv run zensical build --clean --strict`,
+  output to `site/`. Copy the features and markdown-extension block from
+  `~/src/IvanAnishchuk/cuere/zensical.toml`. Give this site its own palette and
+  theme rather than cuere's; the brand colors live in `docs/assets/`.
 - zensical does not yet ship a blog plugin or social-card generation. We add both
   ourselves. This is the accepted cost of staying on zensical, decided by Ivan
   over switching renderers. Track upstream and contribute back where it fits.

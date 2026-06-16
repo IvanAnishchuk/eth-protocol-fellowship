@@ -17,3 +17,7 @@ __pycache__/
 
 # Local agent/session state
 .remember/
+
+# Internal planning docs (design specs and implementation plans, kept local)
+/specs/
+/plans/

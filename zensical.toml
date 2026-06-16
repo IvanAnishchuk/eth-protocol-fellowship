@@ -8,7 +8,99 @@ docs_dir = "docs"
 site_dir = "site"
 copyright = "Released to the public domain under CC0-1.0."
 
+# Brand stylesheet, linked after the theme CSS so its custom-property overrides
+# win. Carries the indigo/violet palette (matching docs/assets/) and the display
+# typography. See docs/stylesheets/brand.css.
+extra_css = ["stylesheets/brand.css"]
+
 nav = [
     { "Home" = "index.md" },
     { "Updates" = "updates/index.md" },
 ]
+
+# ----------------------------------------------------------------------------
+# Theme
+# ----------------------------------------------------------------------------
+[project.theme]
+language = "en"
+logo = "assets/logo.svg"
+favicon = "assets/favicon.svg"
+features = [
+    "navigation.instant",
+    "navigation.instant.prefetch",
+    "navigation.tracking",
+    "navigation.top",
+    "navigation.indexes",
+    "navigation.footer",
+    "search.highlight",
+    "search.suggest",
+    "content.code.copy",
+    "content.code.annotate",
+    "content.tabs.link",
+    "content.tooltips",
+    "toc.follow",
+]
+
+# Display/body/code typography. Loaded from Google Fonts by the theme. Hanken
+# Grotesk reads cleanly for long-form update posts; Archivo (the display face,
+# applied to headings in brand.css) gives the headings an engineered grotesque
+# weight. JetBrains Mono carries SSZ/code snippets.
+[project.theme.font]
+text = "Hanken Grotesk"
+code = "JetBrains Mono"
+
+# Custom palette: primary/accent resolve to `data-md-color-*=custom` body
+# attributes, and brand.css supplies the actual indigo/violet values for both
+# the light (default) and dark (slate) schemes.
+[[project.theme.palette]]
+scheme = "default"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/IvanAnishchuk/eth-protocol-fellowship"
+
+# ----------------------------------------------------------------------------
+# Markdown extensions (the standard Material/zensical set, copied from
+# cuere/zensical.toml minus the library-specific API-reference extensions).
+# ----------------------------------------------------------------------------
+[project.markdown_extensions.abbr]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.betterem]
+[project.markdown_extensions.pymdownx.caret]
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.emoji]
+emoji_generator = "zensical.extensions.emoji.to_svg"
+emoji_index = "zensical.extensions.emoji.twemoji"
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+line_spans = "__span"
+pygments_lang_class = true
+[project.markdown_extensions.pymdownx.inlinehilite]
+[project.markdown_extensions.pymdownx.keys]
+[project.markdown_extensions.pymdownx.magiclink]
+[project.markdown_extensions.pymdownx.mark]
+[project.markdown_extensions.pymdownx.smartsymbols]
+[project.markdown_extensions.pymdownx.superfences]
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+combine_header_slug = true
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.tilde]

@@ -1,11 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40" role="img" aria-label="Ethereum Protocol Fellowship mark">
-  <!-- Monochrome mark for the (colored) site header: hexagon container + Merkle tree -->
-  <g fill="none" stroke="#ffffff" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+  <!-- Brand mark: hexagon (SSZ container) wrapping a Merkle tree. The indigo
+       gradient reads on both the light and dark site headers. -->
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8E9BFF"/>
+      <stop offset=".55" stop-color="#5C6EF0"/>
+      <stop offset="1" stop-color="#7C5CE0"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="url(#lg)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
     <path d="M20 4 L32.1 11.5 L32.1 28.5 L20 36 L7.9 28.5 L7.9 11.5 Z"/>
     <line x1="20" y1="15" x2="13.5" y2="25.5"/>
     <line x1="20" y1="15" x2="26.5" y2="25.5"/>
   </g>
-  <g fill="#ffffff">
+  <g fill="url(#lg)">
     <circle cx="20" cy="14.5" r="2.9"/>
     <circle cx="13" cy="26" r="2.9"/>
     <circle cx="27" cy="26" r="2.9"/>

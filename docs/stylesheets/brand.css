@@ -1,0 +1,114 @@
+/* ===========================================================================
+   eth-protocol-fellowship, brand theme
+   ---------------------------------------------------------------------------
+   Indigo/violet identity for the EPF cohort-seven site, layered over the
+   zensical "modern" theme. The palette matches the committed marks in
+   docs/assets/ (favicon.svg, social-card-bg.svg): indigo #5C6EF0, violet
+   #7C5CE0, periwinkle #8E9BFF, on a near-black ink ground.
+
+   Design intent: refined technical minimalism. The dark scheme is the brand's
+   home, where indigo and periwinkle read as light against deep ink. The light
+   scheme stays restrained, the gradient appears only as thin rules and the
+   page title, never as a wash across white.
+   =========================================================================== */
+
+/* Display face for headings and the site title. Body + code come from the
+   theme font config (Hanken Grotesk / JetBrains Mono). */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap");
+
+:root {
+  --epf-indigo: #5c6ef0;
+  --epf-violet: #7c5ce0;
+  --epf-periwinkle: #8e9bff;
+  --epf-indigo-deep: #4b54d6;   /* deeper indigo: header + light-mode links   */
+  --epf-ink: #14141f;           /* brand near-black, from the marks            */
+
+  /* The signature gradient: periwinkle to indigo to violet. Used for the
+     header rule, the page-title wordmark, and the footer edge. */
+  --epf-gradient: linear-gradient(120deg, #8e9bff 0%, #5c6ef0 52%, #7c5ce0 100%);
+
+  --epf-display-font: "Archivo", var(--md-text-font-family, sans-serif);
+}
+
+/* --- Light scheme (default) ------------------------------------------------ */
+[data-md-color-primary=custom] {
+  --md-primary-fg-color:        var(--epf-indigo-deep);
+  --md-primary-fg-color--light: var(--epf-periwinkle);
+  --md-primary-fg-color--dark:  #3b43b8;
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+  --md-typeset-a-color:         #4a52cc;
+}
+
+/* Accent (hover, focus, selection) is violet in both schemes. */
+[data-md-color-accent=custom] {
+  --md-accent-fg-color:             var(--epf-violet);
+  --md-accent-fg-color--transparent: rgba(124, 92, 224, 0.1);
+}
+
+/* --- Dark scheme (slate) --------------------------------------------------- */
+[data-md-color-scheme=slate] {
+  --md-hue: 244deg;             /* re-tint the whole dark palette toward brand */
+}
+
+[data-md-color-scheme=slate][data-md-color-primary=custom] {
+  --md-primary-fg-color:        var(--epf-indigo);
+  --md-primary-fg-color--light: var(--epf-periwinkle);
+  --md-primary-fg-color--dark:  #3b43b8;
+  --md-typeset-a-color:         #9aa6ff;   /* periwinkle links, bright on ink  */
+}
+
+/* ===========================================================================
+   Signature details
+   =========================================================================== */
+
+/* Header: the brand gradient as a thin spine along the bottom edge, echoing
+   the gradient bar on the social card. border-image keeps it gradient-capable
+   without disturbing the header's sticky positioning. */
+.md-header {
+  border-bottom: 2px solid;
+  border-image: var(--epf-gradient) 1;
+}
+
+/* Page title rendered as a gradient wordmark. Applied to h1 only, so it reads
+   as a deliberate highlight rather than a purple wash. */
+.md-typeset h1 {
+  font-family: var(--epf-display-font);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--epf-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Remaining headings use the display face for an engineered, technical weight,
+   keeping the theme's foreground color for readability. */
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--epf-display-font);
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h2 { font-weight: 600; }
+.md-typeset h3 { font-weight: 600; }
+
+/* Site title in the header bar, also the display face. */
+.md-header__topic > .md-ellipsis {
+  font-family: var(--epf-display-font);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Links: a touch of polish on the underline so body prose reads cleanly. */
+.md-typeset a {
+  text-underline-offset: 0.15em;
+}
+
+/* Footer: a hairline of the brand gradient above the meta strip, closing the
+   page with the same accent the header opens with. */
+.md-footer-meta {
+  border-top: 2px solid;
+  border-image: var(--epf-gradient) 1;
+}

@@ -64,15 +64,21 @@ content outlives the fellowship as a public record.
 
 ## Conventions
 
-- Update posts live at `updates/<slug>.md` in the committed source tree, outside
-  `docs/`. The `zensical-updates build` pre-build step copies each to
-  `docs/updates/<slug>.md` and renders it at `/updates/<slug>/`, so the file stem
-  is the URL segment: no date prefix in the filename, no `posts/` subdir. The
-  generated `docs/updates/` tree is build output and is gitignored. Put `date`
-  and `categories` in YAML front matter as block lists (`- weekly-update`), not
-  flow lists (`[weekly-update]`): zensical's strict link check reads `[x]` in
-  front matter as an unresolved Markdown reference link and fails the build.
-  Allowed categories: `weekly-update`, `project-update`, `news`.
+- Update posts live at `updates/YYYY-MM-DD-<slug>.md` in the committed source
+  tree, outside `docs/`. The `zensical-updates build` pre-build step copies each
+  to `docs/updates/<stem>.md` and renders it at `/updates/<stem>/`, so the whole
+  filename stem is the URL segment. Date-prefix the filename
+  (`2026-06-17-week-0.md`) and keep that prefix in sync with the post's `date:`
+  front matter: the URL then carries the date and the source tree sorts
+  chronologically. No `posts/` subdir. The generator takes the slug from the
+  stem and, with no `title:`, falls back to the stem for the display title, so
+  give every post an explicit `title:` in front matter, otherwise the listing
+  shows the raw dated stem. The generated `docs/updates/` tree is build output
+  and is gitignored. Put `date`, `title`, and `categories` in YAML front matter;
+  write `categories` and `tags` as block lists (`- weekly-update`), not flow
+  lists (`[weekly-update]`): zensical's strict link check reads `[x]` in front
+  matter as an unresolved Markdown reference link and fails the build. Allowed
+  categories: `weekly-update`, `project-update`, `news`.
 - Pin GitHub Actions to commit SHAs. Re-verify the pins when CI lands, since they
   go stale.
 - Run `uv run zensical-updates build` before previewing or building, so the

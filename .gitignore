@@ -1,0 +1,16 @@
+# Build output
+site/
+docs/.bloggen/
+
+# Local-only handoff / notes (this repo is public; keep private cross-refs here)
+HANDOFF.local.md
+*.local.md
+
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+.cache/
+
+# OS / editor
+.DS_Store

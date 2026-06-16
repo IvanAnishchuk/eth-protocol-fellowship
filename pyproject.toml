@@ -1,0 +1,14 @@
+[project]
+name = "eth-protocol-fellowship-site"
+version = "0"
+description = "Build environment for the EPF dev-update site (zensical)."
+requires-python = ">=3.13"
+dependencies = [
+    # Pre-1.0 doc tooling, upper-bounded to the tested minor (matches cuere).
+    "zensical>=0.0.45,<0.1",
+    # Updates blog: knu2xs/zensical-blog sidecar plugin, pinned to a commit.
+    "zensical-blog @ git+https://github.com/knu2xs/zensical-blog@305e30a8442ceee371ad300314f0a3deb4436cd4",
+]
+
+[tool.uv]
+package = false

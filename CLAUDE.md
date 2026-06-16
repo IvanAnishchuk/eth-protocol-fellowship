@@ -93,9 +93,9 @@ messages, and PR text.
 This site documents the **etheorem** project (Lean 4 formal verification of
 Ethereum SSZ): upstream `github.com/etheorem/etheorem`, local
 `~/src/ethereum/etheorem`. The EPF cohort-seven program repo is
-`github.com/eth-protocol-fellowship/cohort-seven`. The EPF GitHub org is named
-`eth-protocol-fellowship`, the same string as this repo, under a different owner;
-keep them distinct. The biweekly update lands as an alphabetical row in that
+`github.com/eth-protocol-fellows/cohort-seven`. The EPF GitHub org is named
+`eth-protocol-fellows` (the `-fellows` ending), distinct from this repo's own
+`eth-protocol-fellowship` name under owner `IvanAnishchuk`; keep them distinct. The biweekly update lands as an alphabetical row in that
 program repo's `development-updates.md`, submitted from the fork
 `IvanAnishchuk/cohort-seven`.
 

@@ -45,7 +45,7 @@ dedicated agent picks up implementation from Phase 0.
 
 This plan documents the **etheorem** project (Lean 4 SSZ formal verification),
 upstream `github.com/etheorem/etheorem`. The biweekly update is submitted as a row
-in `github.com/eth-protocol-fellowship/cohort-seven`'s `development-updates.md`
+in `github.com/eth-protocol-fellows/cohort-seven`'s `development-updates.md`
 from the fork `IvanAnishchuk/cohort-seven`. Copy the zensical config and CI from
 `~/src/IvanAnishchuk/cuere`. The empty Week-0 post is filled by Ivan from his own
 draft (no-LLM). Gold-standard example: `epf.raxhvl.com`.

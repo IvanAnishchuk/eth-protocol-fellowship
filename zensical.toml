@@ -15,7 +15,9 @@ extra_css = ["stylesheets/brand.css"]
 
 nav = [
     { "Home" = "index.md" },
+    { "Project" = "project.md" },
     { "Updates" = "updates/index.md" },
+    { "About" = "about.md" },
 ]
 
 # ----------------------------------------------------------------------------

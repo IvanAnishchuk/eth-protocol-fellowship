@@ -24,6 +24,10 @@ continuously, so entries accumulate under [Unreleased].
   Archivo (display headings), and JetBrains Mono (code).
 - SEO base: per-page meta descriptions and canonical URLs from `site_url`;
   zensical emits `sitemap.xml` natively, so no extra build step is needed.
+- Hub pages: `docs/index.md` (home), `docs/project.md` (the formal-verification
+  project), and `docs/about.md` (bio, fellowship context, contact). Each carries
+  a `description` front-matter line for its meta tag. The nav now reads Home,
+  Project, Updates, About. Agent-drafted; Ivan rewrites the prose in his voice.
 
 ### Changed
 

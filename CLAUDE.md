@@ -86,6 +86,16 @@ content outlives the fellowship as a public record.
   preview; `uv run zensical-updates build && uv run zensical build --clean
   --strict` is the gate.
 
+## Project board
+
+This site and the `zensical-updates` sidecar share one GitHub Projects board.
+Separate the two concerns by title prefix: `[epf]` items are work in this repo,
+`[zu]` items are work in the generator repo. Prefix every item you file, and
+work the lane that matches the repo you are in. An agent in this repo focuses on
+`[epf]` items; file a `[zu]` item (with enough context to act on standalone) when
+the work belongs to the generator. Board number and field IDs live in
+`HANDOFF.local.md`, kept out of this public file.
+
 ## Writing style
 
 These mirror Ivan's global conventions and bind on docs, comments, commit

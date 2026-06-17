@@ -1,0 +1,24 @@
+# Gemini Code Assist configuration for the EPF dev-update site.
+# Schema: https://docs.cloud.google.com/gemini/docs/code-review/customize-repo-review
+# Review rules live alongside this file in .gemini/styleguide.md.
+
+have_fun: false
+
+# Skip generated build output and the lock file. Mirrors the CodeRabbit
+# path_filters in .coderabbit.yaml: site/ is zensical output and docs/updates/
+# is written by the zensical-updates sidecar (both gitignored).
+ignore_patterns:
+  - "uv.lock"
+  - "site/**"
+  - "docs/updates/**"
+
+code_review:
+  disable: false
+  comment_severity_threshold: MEDIUM
+  max_review_comments: -1
+  pull_request_opened:
+    summary: true
+    code_review: true
+    # Wait for a draft to be marked ready before reviewing (matches
+    # CodeRabbit's auto_review.drafts: false).
+    include_drafts: false

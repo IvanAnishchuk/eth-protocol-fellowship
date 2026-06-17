@@ -1,6 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img" aria-label="Social card template">
-  <!-- Starter Open Graph card (1200x630). The social-card build step overlays the
-       real per-page title and description; the sample text here is for preview. -->
+  <!-- Site-wide Open Graph card (1200x630). The build step (tools/social_card.py)
+       rasterizes this SVG as-is to site/assets/social-card.png, and every page
+       references it via overrides/main.html. Edit the card by editing this file.
+       Fonts are the vendored brand faces in tools/fonts/ (referenced by full
+       family name, since cairosvg's toy font API only distinguishes normal/bold). -->
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#0E0E18"/>
@@ -41,14 +44,14 @@
       <circle cx="15" cy="36" r="4.6"/>
       <circle cx="37" cy="36" r="4.6"/>
     </g>
-    <text x="68" y="32" fill="#AEB4D6" font-family="Inter, system-ui, sans-serif" font-size="26" font-weight="600" letter-spacing="2">ETHEREUM PROTOCOL FELLOWSHIP</text>
+    <text x="68" y="32" fill="#AEB4D6" font-family="Hanken Grotesk SemiBold" font-size="26" letter-spacing="2">ETHEREUM PROTOCOL FELLOWSHIP</text>
   </g>
 
-  <!-- title + subtitle (replaced per page by the build step) -->
-  <text x="80" y="332" fill="#F2F3FB" font-family="Inter, system-ui, sans-serif" font-size="76" font-weight="800">Dev Update, Week 0</text>
-  <text x="80" y="410" fill="#9AA0C6" font-family="Inter, system-ui, sans-serif" font-size="34" font-weight="500">Biweekly dev updates from Cohort Seven</text>
+  <!-- title + subtitle: site-wide default card text -->
+  <text x="80" y="332" fill="#F2F3FB" font-family="Archivo ExtraBold" font-size="76">Ivan Anishchuk</text>
+  <text x="80" y="410" fill="#9AA0C6" font-family="Hanken Grotesk Medium" font-size="34">Cohort Seven dev updates</text>
 
   <!-- footer -->
   <rect x="80" y="520" width="70" height="6" rx="3" fill="url(#brand)"/>
-  <text x="80" y="566" fill="#AEB4D6" font-family="Inter, system-ui, sans-serif" font-size="28" font-weight="600">ivananishchuk.github.io/eth-protocol-fellowship</text>
+  <text x="80" y="566" fill="#AEB4D6" font-family="Hanken Grotesk SemiBold" font-size="28">ivananishchuk.github.io/eth-protocol-fellowship</text>
 </svg>

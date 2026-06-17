@@ -52,6 +52,13 @@ continuously, so entries accumulate under [Unreleased].
 - Reworded footer credit line via an `overrides/partials/copyright.html`
   template override: "Built with Zensical, agentic help and love by Ivan
   Anishchuk", keeping the Zensical attribution link.
+- Social card: a site-wide Open Graph image. `tools/social_card.py` rasterizes
+  `docs/assets/social-card-bg.svg` to `site/assets/social-card.png` (1200x630)
+  with cairosvg, using the brand faces vendored under `tools/fonts/` (Archivo and
+  Hanken Grotesk, instanced to single weights and ASCII-subset, SIL OFL). An
+  `overrides/main.html` head override adds the Open Graph and Twitter Card meta on
+  every page: the shared card image plus per-page title, description, and URL. CI
+  installs the cairo system library and runs the generator after the build.
 
 ### Changed
 

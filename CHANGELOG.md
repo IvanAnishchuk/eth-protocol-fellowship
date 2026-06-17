@@ -65,6 +65,14 @@ continuously, so entries accumulate under [Unreleased].
   `overrides/main.html` head override adds the Open Graph and Twitter Card meta on
   every page: the shared card image plus per-page title, description, and URL. CI
   installs the cairo system library and runs the generator after the build.
+- AI review and agent configuration files, encoding this repo's real rules for
+  the bots that review its PRs: `.coderabbit.yaml` (schema-pinned; assertive,
+  best-effort, never blocks a merge; path filters and path instructions that
+  cover the front-matter block-list rule, the no-LLM dev-update prose rule, and
+  the SHA-pinned hardened workflow), `.github/copilot-instructions.md`,
+  `AGENTS.md` for Codex and other agents, and `.gemini/styleguide.md` plus
+  `.gemini/config.yaml` for Gemini Code Assist. Each carries the house writing
+  style and the policy that a green or empty bot check is not an approval.
 
 ### Changed
 

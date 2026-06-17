@@ -56,8 +56,11 @@ continuously, so entries accumulate under [Unreleased].
   which writes `feed.xml` into the generated (gitignored) `docs/updates/` tree;
   the build copies it to `site/updates/feed.xml`. The feed is RSS 2.0 with
   absolute `https` item, channel, and self URLs carrying the project base path
-  (`/eth-protocol-fellowship/`), so readers resolve every link off-site. Head
-  autodiscovery and a visible Subscribe link follow in a separate change.
+  (`/eth-protocol-fellowship/`), so readers resolve every link off-site. A
+  site-wide `<link rel="alternate" type="application/rss+xml">` in the head
+  (`overrides/main.html`) lets readers autodiscover the feed from any page, the
+  Updates landing page (`updates/index.md`) carries a visible Subscribe link, and
+  the footer social row gains an RSS icon linking the feed.
 - Social card: a site-wide Open Graph image. `tools/social_card.py` rasterizes
   `docs/assets/social-card-bg.svg` to `site/assets/social-card.png` (1200x630)
   with cairosvg, using the brand faces vendored under `tools/fonts/` (Archivo and

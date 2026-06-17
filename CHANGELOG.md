@@ -83,9 +83,9 @@ continuously, so entries accumulate under [Unreleased].
   protection, Dependabot security updates), and branch protection on `main`.
   Protection requires a pull request and a green `Build site` check before
   merging, blocks force-pushes and deletion, and requires signed commits and
-  resolved conversations. It needs no approving review, since a solo maintainer
-  cannot approve their own PR, and keeps the admin bypass so the maintainer is
-  not locked out.
+  resolved conversations. It leaves approvals optional, matching a solo
+  workflow where one maintainer is the only committer, and keeps the admin
+  bypass to prevent lockouts.
 
 ### Changed
 

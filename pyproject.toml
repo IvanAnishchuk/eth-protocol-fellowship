@@ -2,7 +2,7 @@
 name = "eth-protocol-fellowship-site"
 version = "0"
 description = "Build environment for the EPF dev-update site (zensical)."
-requires-python = ">=3.13"
+requires-python = "==3.14.*"
 dependencies = [
     # Rasterizes the site-wide social card (tools/social_card.py) at build time;
     # needs the cairo system library on the build host.

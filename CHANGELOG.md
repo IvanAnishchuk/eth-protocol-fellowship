@@ -68,6 +68,9 @@ continuously, so entries accumulate under [Unreleased].
 
 ### Changed
 
+- Python 3.14-only build environment. `requires-python` is now `==3.14.*` (was
+  `>=3.13`), the `uv.lock` is re-resolved for 3.14, and CI installs Python 3.14
+  (`.github/workflows/docs.yml`). The dev `.venv` already ran 3.14.
 - `docs/assets/logo.svg` now uses the brand gradient (was white-only), so the
   mark stays visible on both the light and dark headers.
 

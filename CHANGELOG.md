@@ -76,6 +76,16 @@ continuously, so entries accumulate under [Unreleased].
   `AGENTS.md` for Codex and other agents, and `.gemini/styleguide.md` plus
   `.gemini/config.yaml` for Gemini Code Assist. Each carries the house writing
   style and the policy that a green or empty bot check is not an approval.
+- Repository settings as code: `.github/settings.yml` for the
+  repository-settings Settings GitHub App. It codifies the repo metadata
+  (description, the Pages homepage, topics), a merge-commit-only policy with
+  branch deletion on merge, the security features (secret scanning, push
+  protection, Dependabot security updates), and branch protection on `main`.
+  Protection requires a pull request and a green `Build site` check before
+  merging, blocks force-pushes and deletion, and requires signed commits and
+  resolved conversations. It leaves approvals optional, matching a solo
+  workflow where one maintainer is the only committer, and keeps the admin
+  bypass to prevent lockouts.
 
 ### Changed
 

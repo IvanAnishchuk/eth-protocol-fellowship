@@ -79,6 +79,10 @@ continuously, so entries accumulate under [Unreleased].
 - Python 3.14-only build environment. `requires-python` is now `==3.14.*` (was
   `>=3.13`), the `uv.lock` is re-resolved for 3.14, and CI installs Python 3.14
   (`.github/workflows/docs.yml`). The dev `.venv` already ran 3.14.
+- Bumped `zensical-updates` to `>=0.1.4,<0.2`. The 0.1.4 release drops Python
+  3.11/3.12/3.13 and requires Python 3.14, which matches this site's own
+  3.14-only floor. The generated output is unchanged: the Updates section and
+  `feed.xml` render the same as under 0.1.3.
 - `docs/assets/logo.svg` now uses the brand gradient (was white-only), so the
   mark stays visible on both the light and dark headers.
 

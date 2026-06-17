@@ -21,4 +21,6 @@ biweekly dev updates on their progress. This site collects mine.
 
 - GitHub: [IvanAnishchuk](https://github.com/IvanAnishchuk)
 - X: [@IvanAnishchuk](https://x.com/IvanAnishchuk)
+- Farcaster: [@IvanAnishchuk](https://farcaster.xyz/IvanAnishchuk)
+- LinkedIn: [ivananishchuk](https://www.linkedin.com/in/ivananishchuk)
 - Web: [ivananishchuk.com](https://ivananishchuk.com)

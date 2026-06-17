@@ -79,9 +79,33 @@ accent = "custom"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to light mode"
 
+# Footer social icons carrying Ivan's presence: GitHub profile, X, Farcaster,
+# LinkedIn, and website. The source repo already shows in the header via
+# repo_url, so it stays out of the footer. `name` becomes each link's title.
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/IvanAnishchuk/eth-protocol-fellowship"
+link = "https://github.com/IvanAnishchuk"
+name = "Ivan on GitHub"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/x-twitter"
+link = "https://x.com/IvanAnishchuk"
+name = "Ivan on X"
+
+[[project.extra.social]]
+icon = "simple/farcaster"
+link = "https://farcaster.xyz/IvanAnishchuk"
+name = "Ivan on Farcaster"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/in/ivananishchuk"
+name = "Ivan on LinkedIn"
+
+[[project.extra.social]]
+icon = "fontawesome/solid/globe"
+link = "https://ivananishchuk.com"
+name = "ivananishchuk.com"
 
 # ----------------------------------------------------------------------------
 # Markdown extensions (the standard Material/zensical set, copied from

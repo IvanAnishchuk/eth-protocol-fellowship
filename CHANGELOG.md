@@ -52,6 +52,12 @@ continuously, so entries accumulate under [Unreleased].
 - Reworded footer credit line via an `overrides/partials/copyright.html`
   template override: "Built with Zensical, agentic help and love by Ivan
   Anishchuk", keeping the Zensical attribution link.
+- RSS feed for the Updates section. Bumped `zensical-updates` to `>=0.1.3,<0.2`,
+  which writes `feed.xml` into the generated (gitignored) `docs/updates/` tree;
+  the build copies it to `site/updates/feed.xml`. The feed is RSS 2.0 with
+  absolute `https` item, channel, and self URLs carrying the project base path
+  (`/eth-protocol-fellowship/`), so readers resolve every link off-site. Head
+  autodiscovery and a visible Subscribe link follow in a separate change.
 - Social card: a site-wide Open Graph image. `tools/social_card.py` rasterizes
   `docs/assets/social-card-bg.svg` to `site/assets/social-card.png` (1200x630)
   with cairosvg, using the brand faces vendored under `tools/fonts/` (Archivo and

@@ -35,8 +35,9 @@ the build because `--clean` wipes `site/`).
 - Dev-update posts live at `updates/YYYY-MM-DD-<slug>.md` outside `docs/`. The
   dated filename stem is the URL segment; keep the `date:` front matter in sync.
   Give every post an explicit `title:`. Write `categories`/`tags` as YAML block
-  lists (`- weekly-update`), never flow lists: zensical's strict link check reads
-  `[x]` in front matter as a Markdown reference link and fails the build. Allowed
+  lists (`- weekly-update`), never flow lists (`[weekly-update]`): zensical's
+  strict link check reads `[x]` in front matter as a Markdown reference link and
+  fails the build. Allowed
   categories: weekly-update, project-update, news.
 - The Updates blog and social cards are our own additions on top of zensical
   (the generator is the separate `zensical-updates` sidecar). zensical does not

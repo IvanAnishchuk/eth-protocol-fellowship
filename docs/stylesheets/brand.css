@@ -112,3 +112,30 @@
   border-top: 2px solid;
   border-image: var(--epf-gradient) 1;
 }
+
+/* ===========================================================================
+   404 page (overrides/404.html)
+   =========================================================================== */
+
+.md-typeset .epf-404 {
+  text-align: center;
+  padding: 1.5rem 0 3rem;
+}
+
+/* Oversized, faint page number. The h1 below carries the brand gradient, so the
+   number stays muted to avoid two gradient elements competing. */
+.epf-404__code {
+  margin: 0;
+  font-family: var(--epf-display-font);
+  font-weight: 800;
+  font-size: clamp(5rem, 22vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--md-default-fg-color--lightest);
+}
+
+.md-typeset .epf-404__links {
+  display: flex;
+  gap: 1.75rem;
+  justify-content: center;
+}

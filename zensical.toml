@@ -35,6 +35,9 @@ source = "updates"
 language = "en"
 logo = "assets/logo.svg"
 favicon = "assets/favicon.svg"
+# Template overrides layered on the built-in theme (overrides/ shadows matching
+# templates, everything else falls through). Carries the themed 404 page.
+custom_dir = "overrides"
 features = [
     "navigation.instant",
     "navigation.instant.prefetch",

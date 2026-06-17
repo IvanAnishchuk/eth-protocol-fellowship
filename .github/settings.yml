@@ -1,0 +1,68 @@
+# Repository settings managed as code by the repository-settings/app GitHub App
+# (probot/settings). https://probot.github.io/apps/settings/
+# The app applies this file on every push to the default branch. It must be
+# installed on the repo for the file to take effect (it is, for this repo).
+# Branch protection here pairs with the always-feature-branch-and-PR workflow:
+# main takes no direct pushes, and a PR cannot merge until "Build site" is green.
+repository:
+  name: eth-protocol-fellowship
+  description: >-
+    Ivan Anishchuk's Ethereum Protocol Fellowship cohort-seven dev updates and
+    project notes, a public record built with Zensical.
+  homepage: https://ivananishchuk.github.io/eth-protocol-fellowship/
+  topics:
+    - ethereum
+    - ethereum-protocol-fellowship
+    - epf
+    - formal-verification
+    - zensical
+    - github-pages
+    - documentation
+  private: false
+  has_issues: true
+  has_projects: true
+  has_wiki: false
+  has_downloads: true
+  default_branch: main
+  # Merge commits only, matching the house default; squash and rebase are off.
+  allow_squash_merge: false
+  allow_merge_commit: true
+  allow_rebase_merge: false
+  allow_auto_merge: true
+  delete_branch_on_merge: true
+  allow_update_branch: true
+
+  security_and_analysis:
+    secret_scanning:
+      status: enabled
+    secret_scanning_push_protection:
+      status: enabled
+    dependabot_security_updates:
+      status: enabled
+
+branches:
+  - name: main
+    protection:
+      # Require a pull request before merging, but no approving review: a solo
+      # maintainer cannot approve their own PR, so a required approval would only
+      # be cleared by the admin bypass below. The PR requirement and the status
+      # check are what gate main.
+      required_pull_request_reviews:
+        required_approving_review_count: 0
+        dismiss_stale_reviews: true
+      # Only the PR-gating check. "Build site" runs on every PR; "Deploy to
+      # GitHub Pages" is push-to-main only and would never report on a PR, so
+      # listing it would block every merge. Names must match the job names in
+      # .github/workflows/docs.yml exactly. CodeRabbit stays advisory, not
+      # required: its review check is rate-limited and would block merges when
+      # the plan is out of credits.
+      required_status_checks:
+        strict: true
+        contexts:
+          - "Build site"
+      enforce_admins: false  # solo maintainer keeps admin bypass, not locked out
+      required_linear_history: false  # merge commits are used for PRs
+      allow_force_pushes: false
+      allow_deletions: false
+      required_conversation_resolution: true
+      required_signatures: true

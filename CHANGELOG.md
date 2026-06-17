@@ -40,6 +40,11 @@ continuously, so entries accumulate under [Unreleased].
   and push to `main`, and deploys `site/` to GitHub Pages on push to `main`.
   Pinned action SHAs, harden-runner egress audit, `persist-credentials: false`,
   and least-privilege per-job permissions.
+- Themed 404 page. A template override (`overrides/404.html`, wired through
+  `theme.custom_dir`) replaces zensical's bare 404 with one that carries the
+  brand chrome and links back to Home and Updates. GitHub Pages serves it for
+  unknown paths under the project base, and zensical builds it with
+  absolute-from-root asset URLs so it resolves at any depth.
 
 ### Changed
 

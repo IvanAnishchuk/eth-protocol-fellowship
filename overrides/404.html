@@ -1,0 +1,18 @@
+{% extends "main.html" %}
+
+{#-
+  Themed 404. GitHub Pages serves this from /404.html for any unknown path under
+  the project base, and zensical already builds it with absolute-from-root asset
+  URLs, so the relative `| url` links below resolve correctly at any depth.
+-#}
+{% block content %}
+  <div class="epf-404">
+    <p class="epf-404__code" aria-hidden="true">404</p>
+    <h1>Page not found</h1>
+    <p>This page moved or never existed. The link that brought you here may be out of date.</p>
+    <p class="epf-404__links">
+      <a href="{{ 'index.html' | url }}">Home</a>
+      <a href="{{ 'updates/' | url }}">Updates</a>
+    </p>
+  </div>
+{% endblock %}

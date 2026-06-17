@@ -1,0 +1,17 @@
+{#-
+  Footer credit line. Overrides the base partial to reword the generator
+  attribution in Ivan's voice while keeping the Zensical link. Setting
+  `extra.generator = false` still hides the whole line.
+-#}
+<div class="md-copyright">
+  {% if config.copyright %}
+    <div class="md-copyright__highlight">
+      {{ config.copyright }}
+    </div>
+  {% endif %}
+  {% if not config.extra.generator == false %}
+    Built with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">Zensical</a>,
+    agentic help and love by Ivan Anishchuk
+  {% endif %}
+</div>

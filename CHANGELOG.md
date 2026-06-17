@@ -45,6 +45,13 @@ continuously, so entries accumulate under [Unreleased].
   brand chrome and links back to Home and Updates. GitHub Pages serves it for
   unknown paths under the project base, and zensical builds it with
   absolute-from-root asset URLs so it resolves at any depth.
+- Footer social icons for Ivan's presence: GitHub profile, X, Farcaster,
+  LinkedIn, and website, each with a `name` title. The source repo stays out of
+  the footer since the header already links it. The About page Contact list
+  gains the matching Farcaster and LinkedIn links.
+- Reworded footer credit line via an `overrides/partials/copyright.html`
+  template override: "Built with Zensical, agentic help and love by Ivan
+  Anishchuk", keeping the Zensical attribution link.
 
 ### Changed
 

@@ -46,6 +46,13 @@ continuously, so entries accumulate under [Unreleased].
 - `docs/assets/logo.svg` now uses the brand gradient (was white-only), so the
   mark stays visible on both the light and dark headers.
 
+### Fixed
+
+- Updates section links now carry the site base path. Bumped `zensical-updates`
+  to `>=0.1.2,<0.2`: 0.1.0/0.1.1 emitted site-root-absolute URLs (`/updates/...`)
+  that 404'd on the project Pages site served under `/eth-protocol-fellowship/`;
+  0.1.2 derives the prefix from `site_url`.
+
 ### Notes
 
 - The `zensical-blog` plugin spike concluded that a single-build plugin is not

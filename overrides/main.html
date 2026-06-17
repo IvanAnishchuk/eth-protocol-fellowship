@@ -1,0 +1,43 @@
+{#-
+  Site-wide head extras: Open Graph and Twitter Card meta. The card image is the
+  single site-wide card rendered by tools/social_card.py into
+  site/assets/social-card.png; the title and description mirror the theme's own
+  <title>/description logic so an individual page (a specific dev update) shares
+  with its own heading next to the shared image.
+
+  This shadows the theme's main.html, which is an empty `{% extends "base.html" %}`,
+  so nothing is lost. overrides/404.html extends main.html, so the 404 inherits
+  these tags too. The base theme emits no og:/twitter: meta, so there are no
+  duplicates.
+-#}
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+  {% if page.meta and page.meta.title %}
+    {% set og_title = page.meta.title ~ " - " ~ config.site_name %}
+  {% elif page.title and not page.is_homepage %}
+    {% set og_title = (page.title | striptags) ~ " - " ~ config.site_name %}
+  {% else %}
+    {% set og_title = config.site_name %}
+  {% endif %}
+  {% if page.meta and page.meta.description %}
+    {% set og_desc = page.meta.description %}
+  {% else %}
+    {% set og_desc = config.site_description %}
+  {% endif %}
+  {% set og_image = config.site_url ~ "assets/social-card.png" %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ config.site_name }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ og_desc }}">
+  {% if page.canonical_url %}<meta property="og:url" content="{{ page.canonical_url }}">{% endif %}
+  <meta property="og:image" content="{{ og_image }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ config.site_name }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ og_title }}">
+  <meta name="twitter:description" content="{{ og_desc }}">
+  <meta name="twitter:image" content="{{ og_image }}">
+{% endblock %}

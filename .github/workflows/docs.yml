@@ -2,8 +2,11 @@
 # Build runs on every push/PR to main as a CI gate (zensical --strict); deploy
 # runs only on push to main. The build is two-step: the zensical-updates sidecar
 # generates the Updates section into docs/updates/ (gitignored) first, then
-# zensical builds the site. Hardened with pinned action SHAs, harden-runner,
-# persist-credentials:false, and least-privilege permissions.
+# zensical builds the site. After the build, tools/social_card.py rasterizes the
+# site-wide social card into site/assets/ (it needs the cairo system library;
+# brand fonts are vendored in tools/fonts/, so no font download is required).
+# Hardened with pinned action SHAs, harden-runner, persist-credentials:false, and
+# least-privilege permissions.
 # NOTE: GitHub Pages must be enabled (Settings -> Pages -> Source: GitHub
 # Actions) before the deploy job can succeed; it is enabled for this repo.
 # Re-verify the action SHAs periodically (pins go stale).
@@ -38,15 +41,23 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install system libraries for card rendering
+        # cairosvg rasterizes the social card through the cairo runtime library
+        # (libfontconfig comes in as a dependency). Brand fonts are vendored in
+        # tools/fonts/, so no font download is needed.
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libcairo2
+
       - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
         with:
           python-version: "3.13"
           enable-cache: true
 
       - name: Install dependencies
-        # Top-level deps only (zensical + zensical-updates): no dev group, and
-        # package = false, so nothing is built editable. --frozen installs the
-        # exact pins from uv.lock.
+        # Top-level deps only (zensical, zensical-updates, cairosvg): no dev
+        # group, and package = false, so nothing is built editable. --frozen
+        # installs the exact pins from uv.lock.
         run: uv sync --frozen --no-dev
 
       - name: Generate Updates section
@@ -59,6 +70,13 @@ jobs:
         # --no-sync: reuse the env from the install step instead of letting
         # `uv run` re-sync (which would drop --no-dev).
         run: uv run --no-sync zensical build --clean --strict
+
+      - name: Generate social card
+        # Rasterizes docs/assets/social-card-bg.svg into the built tree at
+        # site/assets/social-card.png (referenced by overrides/main.html). Runs
+        # after the build because `zensical build --clean` wipes site/, and on
+        # PRs as well so a broken render fails the gate.
+        run: uv run --no-sync python tools/social_card.py
 
       - name: Upload Pages artifact
         # Only on push to main; PR runs are a build-only --strict gate.

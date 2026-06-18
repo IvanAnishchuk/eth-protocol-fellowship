@@ -138,7 +138,7 @@ dependencies = [
 requires-dist = [
     { name = "cairosvg", specifier = ">=2.7,<3" },
     { name = "zensical", specifier = ">=0.0.45,<0.1" },
-    { name = "zensical-updates", specifier = ">=0.1.4,<0.2" },
+    { name = "zensical-updates", specifier = ">=0.1.5,<0.2" },
 ]
 
 [[package]]
@@ -495,7 +495,7 @@ wheels = [
 
 [[package]]
 name = "zensical-updates"
-version = "0.1.4"
+version = "0.1.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "feedgen" },
@@ -505,7 +505,7 @@ dependencies = [
     { name = "typer" },
     { name = "zensical" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/34/a4/ffc1b748a7b76a63637e389c9673cca3bca09db2a5b9370f8a7d83b4ff90/zensical_updates-0.1.4.tar.gz", hash = "sha256:ec46047765abaf0d5e4e894d711e878a6362e8b184fa76005806c59886ad751e", size = 25830, upload-time = "2026-06-17T12:30:14.166Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/fd/43/afeea62ad6042b5d966fbc194cb1118b21dd04e720edc43749c4898233bc/zensical_updates-0.1.5.tar.gz", hash = "sha256:3a083b944c44c35501bbf65a731716b8c49d64cacdc1cd838766c894fbfea448", size = 29155, upload-time = "2026-06-18T10:24:59.635Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/6a/98/3d062fecb89ec91d3458b584614cf2ef3d281dc8b0b3226a8b5264644564/zensical_updates-0.1.4-py3-none-any.whl", hash = "sha256:f230d5fa4ace469b9a2578760619854ab5d845f920801cd3006f4d08a1773c9e", size = 18317, upload-time = "2026-06-17T12:30:12.906Z" },
+    { url = "https://files.pythonhosted.org/packages/ad/84/921de746d53775a1bdeac4c8e2efefccc11c0228a5987e05b2323ca1e688/zensical_updates-0.1.5-py3-none-any.whl", hash = "sha256:2c0910d5f2e12a857042fbc7c2a4cd22c597b9ca64cc1984064f02646b7f522d", size = 19565, upload-time = "2026-06-18T10:24:58.353Z" },
 ]

@@ -86,6 +86,10 @@ continuously, so entries accumulate under [Unreleased].
   resolved conversations. It leaves approvals optional, matching a solo
   workflow where one maintainer is the only committer, and keeps the admin
   bypass to prevent lockouts.
+- Browse navigation for the Updates section: the Tags and Categories index pages
+  render a frequency-ordered cloud, and a `Browse` nav section links the Tags,
+  Categories, and Archive indexes. Pulled in with the `zensical-updates` 0.1.5
+  bump.
 
 ### Changed
 

@@ -89,7 +89,7 @@ continuously, so entries accumulate under [Unreleased].
 - Browse navigation for the Updates section: the Tags and Categories index pages
   render a frequency-ordered cloud, and a `Browse` nav section links the Tags,
   Categories, and Archive indexes. Pulled in with the `zensical-updates` 0.1.5
-  bump (pin floor raised to `>=0.1.5`).
+  bump.
 
 ### Changed
 

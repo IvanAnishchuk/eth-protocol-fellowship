@@ -17,6 +17,11 @@ nav = [
     { "Home" = "index.md" },
     { "Project" = "project.md" },
     { "Updates" = "updates/index.md" },
+    { "Browse" = [
+        { "Tags" = "updates/tags/index.md" },
+        { "Categories" = "updates/categories/index.md" },
+        { "Archive" = "updates/archive/index.md" },
+    ] },
     { "About" = "about.md" },
 ]
 
@@ -27,6 +32,12 @@ nav = [
 [project.extra.zensical_updates]
 base = "updates"
 source = "updates"
+# Taxonomy index pages: the tag/category clouds and the Browse cross-links. All
+# default on; stated here so the site's intent is visible and turning one off is
+# a one-line edit.
+emit_tags = true
+emit_categories = true
+emit_archive = true
 
 # ----------------------------------------------------------------------------
 # Theme

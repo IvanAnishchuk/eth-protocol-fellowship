@@ -19,8 +19,9 @@ continuously, so entries accumulate under [Unreleased].
   explicit `title:` so the listing shows it, not the dated stem); the generator
   writes the section into the gitignored `docs/updates/`. The build is now
   two-step: `zensical-updates build` then `zensical build --clean --strict`.
-- A Week-0 dev-update scaffold at `updates/2026-06-17-week-0.md` (front matter, headings,
-  and a links checklist). Ivan writes the body prose (EPF no-LLM rule).
+- The Week-0 dev update at `updates/2026-06-17-week-0.md`, Ivan's first cohort-7 update
+  (background, the week's scoping and formal-verification survey, areas and what's next,
+  resources). Body written by Ivan per the EPF no-LLM rule.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

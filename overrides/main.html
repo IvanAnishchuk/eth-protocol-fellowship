@@ -42,8 +42,10 @@
   <meta name="twitter:image" content="{{ og_image }}">
   <link rel="alternate" type="application/rss+xml" title="{{ config.site_name }} updates feed" href="{{ config.site_url }}updates/feed.xml">
   {#- schema.org JSON-LD. Reuses og_title/og_desc set above. One @graph per
-      page, keyed off the same page type the meta block already distinguishes.
-      Skipped on pages with no canonical URL (e.g. 404). -#}
+      page: the page-specific nodes plus the shared WebSite and Person, so every
+      @id reference (#website, #ivan) resolves in-document. Keyed off the same
+      page type the meta block distinguishes. Skipped when there is no canonical
+      URL (e.g. 404). -#}
   {% if page and page.canonical_url %}
     {% set person = {
       "@type": "Person",
@@ -54,19 +56,17 @@
         | rejectattr("icon", "equalto", "fontawesome/solid/rss")
         | map(attribute="link") | list
     } %}
+    {% set website = {
+      "@type": "WebSite",
+      "@id": config.site_url ~ "#website",
+      "name": config.site_name,
+      "url": config.site_url,
+      "description": config.site_description,
+      "publisher": {"@id": config.site_url ~ "#ivan"}
+    } %}
     {% set ns = namespace(graph=[]) %}
     {% if page.canonical_url == config.site_url %}
-      {% set ns.graph = [
-        {
-          "@type": "WebSite",
-          "@id": config.site_url ~ "#website",
-          "name": config.site_name,
-          "url": config.site_url,
-          "description": config.site_description,
-          "publisher": {"@id": config.site_url ~ "#ivan"}
-        },
-        person
-      ] %}
+      {% set ns.graph = [] %}
     {% elif page.meta and page.meta.date %}
       {% set ns.graph = [
         {
@@ -90,8 +90,7 @@
             {"@type": "ListItem", "position": 2, "name": "Updates", "item": config.site_url ~ "updates/"},
             {"@type": "ListItem", "position": 3, "name": page.meta.title, "item": page.canonical_url}
           ]
-        },
-        person
+        }
       ] %}
     {% elif page.canonical_url and page.canonical_url == (config.site_url ~ "updates/") %}
       {% set ns.graph = [
@@ -109,8 +108,7 @@
             {"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url},
             {"@type": "ListItem", "position": 2, "name": "Updates", "item": page.canonical_url}
           ]
-        },
-        person
+        }
       ] %}
     {% elif page.canonical_url and page.canonical_url == (config.site_url ~ "about/") %}
       {% set ns.graph = [
@@ -120,7 +118,6 @@
           "url": page.canonical_url,
           "mainEntity": {"@id": config.site_url ~ "#ivan"}
         },
-        person,
         {
           "@type": "BreadcrumbList",
           "itemListElement": [
@@ -148,6 +145,7 @@
         }
       ] %}
     {% endif %}
+    {% set ns.graph = ns.graph + [website, person] %}
     <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": ns.graph} | tojson }}</script>
   {% endif %}
 {% endblock %}

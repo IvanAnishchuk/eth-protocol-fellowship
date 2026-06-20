@@ -39,8 +39,9 @@ def parse_front_matter(text: str) -> dict:
 
 
 def post_url(stem: str, site_url: str) -> str:
-    """Map a post file stem to its built URL (site_url ends with '/')."""
-    return f"{site_url}updates/{stem}/"
+    """Map a post file stem to its built URL."""
+    base = site_url if site_url.endswith("/") else f"{site_url}/"
+    return f"{base}updates/{stem}/"
 
 
 def load_posts(updates_dir: Path) -> list[dict]:
@@ -49,7 +50,10 @@ def load_posts(updates_dir: Path) -> list[dict]:
     for path in updates_dir.glob("*.md"):
         if path.stem == "index":
             continue
-        meta = parse_front_matter(path.read_text(encoding="utf-8"))
+        try:
+            meta = parse_front_matter(path.read_text(encoding="utf-8"))
+        except yaml.YAMLError as exc:
+            raise ValueError(f"invalid front matter in {path}: {exc}") from exc
         posts.append(
             {
                 "stem": path.stem,

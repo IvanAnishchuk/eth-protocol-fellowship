@@ -31,7 +31,11 @@ def extract_graph_types(html: str) -> set[str]:
     types: set[str] = set()
     for block in SCRIPT_RE.findall(html):
         data = json.loads(block)
+        if not isinstance(data, dict):
+            continue
         for node in data.get("@graph", []):
+            if not isinstance(node, dict):
+                continue
             node_type = node.get("@type")
             if node_type:
                 types.add(node_type)

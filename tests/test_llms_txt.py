@@ -27,6 +27,19 @@ def test_post_url_builds_dated_segment():
     assert url == "https://example.com/epf/updates/2026-06-17-week-0/"
 
 
+def test_post_url_adds_missing_slash():
+    url = llms_txt.post_url("2026-01-01-x", "https://example.com/epf")
+    assert url == "https://example.com/epf/updates/2026-01-01-x/"
+
+
+def test_load_posts_reports_bad_front_matter(tmp_path):
+    (tmp_path / "2026-01-01-bad.md").write_text(
+        "---\ntitle: [unclosed\n---\n# body\n", encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="invalid front matter"):
+        llms_txt.load_posts(tmp_path)
+
+
 def test_render_updates_orders_newest_first():
     posts = [
         {"stem": "2026-06-03-a", "title": "A", "date": "2026-06-03", "description": "older"},

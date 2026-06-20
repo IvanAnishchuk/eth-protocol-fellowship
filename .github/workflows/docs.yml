@@ -60,6 +60,12 @@ jobs:
         # installs the exact pins from uv.lock.
         run: uv sync --frozen --no-dev
 
+      - name: Run unit tests
+        # Unit-test the llms_txt/check_jsonld helpers. Adds the dev group
+        # (pytest) on top of the build env; the build steps below reuse the env
+        # with --no-sync.
+        run: uv run --frozen --group dev pytest -q
+
       - name: Generate Updates section
         # The zensical-updates sidecar writes docs/updates/ (gitignored) from the
         # updates/ sources. Must run before the build: the nav points at

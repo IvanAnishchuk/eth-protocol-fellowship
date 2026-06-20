@@ -84,6 +84,11 @@ jobs:
         # a broken generate fails the gate.
         run: uv run --no-sync python tools/llms_txt.py
 
+      - name: Validate JSON-LD
+        # Parses the built pages and asserts each page type carries the expected
+        # schema.org structured data; fails the gate on drift.
+        run: uv run --no-sync python tools/check_jsonld.py
+
       - name: Upload Pages artifact
         # Only on push to main; PR runs are a build-only --strict gate.
         if: github.event_name == 'push'

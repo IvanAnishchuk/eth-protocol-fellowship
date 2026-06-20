@@ -78,6 +78,12 @@ jobs:
         # PRs as well so a broken render fails the gate.
         run: uv run --no-sync python tools/social_card.py
 
+      - name: Generate llms.txt
+        # Splices the Updates list into the curated header and writes
+        # site/llms.txt. Runs after the build (which wipes site/) and on PRs so
+        # a broken generate fails the gate.
+        run: uv run --no-sync python tools/llms_txt.py
+
       - name: Upload Pages artifact
         # Only on push to main; PR runs are a build-only --strict gate.
         if: github.event_name == 'push'

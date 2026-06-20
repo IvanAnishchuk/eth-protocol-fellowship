@@ -84,8 +84,11 @@ content outlives the fellowship as a public record.
 - Run `uv run zensical-updates build` before previewing or building, so the
   generated `docs/updates/` exists. Use `uv run zensical serve` for local
   preview; `uv run zensical-updates build && uv run zensical build --clean
-  --strict && uv run python tools/social_card.py` is the gate (the last step
-  rasterizes the site-wide social card into the built `site/`).
+  --strict && uv run python tools/social_card.py && uv run python
+  tools/llms_txt.py && uv run python tools/check_jsonld.py` is the gate
+  (social_card.py rasterizes the site-wide card, llms_txt.py writes
+  `site/llms.txt`, check_jsonld.py validates the structured data). Run
+  `uv run pytest` for the generator unit tests.
 
 ## Project board
 

@@ -1,0 +1,20 @@
+import pytest
+
+import check_jsonld
+
+
+def test_extract_graph_types_collects_all():
+    html = (
+        "<head>"
+        '<script type="application/ld+json">'
+        '{"@context":"https://schema.org","@graph":'
+        '[{"@type":"BlogPosting"},{"@type":"BreadcrumbList"}]}'
+        "</script></head>"
+    )
+    assert check_jsonld.extract_graph_types(html) == {"BlogPosting", "BreadcrumbList"}
+
+
+def test_extract_graph_types_malformed_raises():
+    html = '<script type="application/ld+json">{not json}</script>'
+    with pytest.raises(ValueError):
+        check_jsonld.extract_graph_types(html)

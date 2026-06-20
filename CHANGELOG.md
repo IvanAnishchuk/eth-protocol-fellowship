@@ -31,6 +31,18 @@ continuously, so entries accumulate under [Unreleased].
   Archivo (display headings), and JetBrains Mono (code).
 - SEO base: per-page meta descriptions and canonical URLs from `site_url`;
   zensical emits `sitemap.xml` natively, so no extra build step is needed.
+- Structured data for discovery: schema.org JSON-LD on every page, emitted from
+  `overrides/main.html` as a per-page `@graph` (`BlogPosting` on posts,
+  `WebSite` and `Person` on the home page, `Blog` on the Updates index,
+  `ProfilePage` on About, `WebPage` elsewhere, with a `BreadcrumbList`
+  throughout). The Person identity reads from `extra.author_name` and
+  `extra.author_url` and reuses the social links for `sameAs`. A new build step,
+  `tools/check_jsonld.py`, parses the built pages and fails the gate if a page
+  type loses its structured data.
+- `llms.txt` at the site root for AI crawlers: a hand-curated header
+  (`tools/llms.head.md`) with a generated Updates list spliced in by
+  `tools/llms_txt.py` after the build. It lists the hub pages and every
+  dev-update post, so the list stays in sync with `updates/`.
 - Hub pages: `docs/index.md` (home), `docs/project.md` (the formal-verification
   project), and `docs/about.md` (bio, fellowship context, contact). Each carries
   a `description` front-matter line for its meta tag. The nav now reads Home,

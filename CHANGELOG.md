@@ -91,6 +91,10 @@ continuously, so entries accumulate under [Unreleased].
   render a frequency-ordered cloud, and a `Browse` nav section links the Tags,
   Categories, and Archive indexes. Pulled in with the `zensical-updates` 0.1.5
   bump.
+- Dependabot config (`.github/dependabot.yml`) covering the `uv` Python
+  dependencies and the GitHub Actions workflows, on a weekly Monday schedule.
+  Production and dev Python bumps land as grouped PRs, and action bumps land as
+  one grouped PR.
 
 ### Changed
 
@@ -109,6 +113,10 @@ continuously, so entries accumulate under [Unreleased].
 
 ### Fixed
 
+- Branch protection now actually applies. The Settings app silently skips the
+  whole `protection:` block when the `restrictions` key is absent, so
+  `.github/settings.yml` now sets `restrictions: null` (no push restrictions,
+  the only valid value on a personal-account repo).
 - Updates section links now carry the site base path. Bumped `zensical-updates`
   to `>=0.1.2,<0.2`: 0.1.0/0.1.1 emitted site-root-absolute URLs (`/updates/...`)
   that 404'd on the project Pages site served under `/eth-protocol-fellowship/`;

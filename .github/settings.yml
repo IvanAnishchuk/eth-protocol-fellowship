@@ -66,3 +66,8 @@ branches:
       allow_deletions: false
       required_conversation_resolution: true
       required_signatures: true
+      # The Settings app silently skips the whole protection block when
+      # `restrictions` is absent, so it must be present. `null` means no push
+      # restrictions; the object form is org-only, so on a personal-account repo
+      # `null` is the only valid value.
+      restrictions: null

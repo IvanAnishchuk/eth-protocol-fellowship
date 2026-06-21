@@ -103,6 +103,9 @@ continuously, so entries accumulate under [Unreleased].
   `feed.xml` render the same as under 0.1.3.
 - `docs/assets/logo.svg` now uses the brand gradient (was white-only), so the
   mark stays visible on both the light and dark headers.
+- Opted the repo into the shared cadence handoff convention with a tag in
+  `CLAUDE.md` (`remember`, `handoff-guard`, `solo-pm`), and refreshed a stale
+  `CLAUDE.md` note that still called the Updates section a static stub.
 
 ### Fixed
 

@@ -15,6 +15,7 @@ from the actual posts.
 from __future__ import annotations
 
 import tomllib
+from datetime import date
 from pathlib import Path
 
 import yaml
@@ -65,13 +66,26 @@ def load_posts(updates_dir: Path) -> list[dict]:
     return posts
 
 
+def _date_key(raw: str) -> date:
+    """Sort key for a post date; an unparseable/empty date sorts oldest."""
+    try:
+        return date.fromisoformat(raw)
+    except (ValueError, TypeError):
+        return date.min
+
+
+def _escape_link_text(text: str) -> str:
+    """Escape Markdown link-text metacharacters so a title can't break the link."""
+    return text.replace("\\", "\\\\").replace("[", "\\[").replace("]", "\\]")
+
+
 def render_updates(posts: list[dict], site_url: str) -> str:
     """Render the ``## Updates`` section, newest first."""
     lines = ["## Updates", ""]
-    for post in sorted(posts, key=lambda p: p["date"], reverse=True):
+    for post in sorted(posts, key=lambda p: _date_key(p["date"]), reverse=True):
         url = post_url(post["stem"], site_url)
         suffix = f": {post['description']}" if post["description"] else ""
-        lines.append(f"- [{post['title']}]({url}){suffix}")
+        lines.append(f"- [{_escape_link_text(post['title'])}]({url}){suffix}")
     return "\n".join(lines)
 
 

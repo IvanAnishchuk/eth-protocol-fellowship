@@ -21,24 +21,45 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 UPDATES_SRC = ROOT / "updates"
 
+# Tolerant of attribute order, quoting, and extra attributes (e.g. a CSP
+# nonce): a markup tweak should not silently match zero blocks and mis-report.
 SCRIPT_RE = re.compile(
-    r'<script type="application/ld\+json">(.*?)</script>', re.DOTALL
+    r'<script\b[^>]*\stype\s*=\s*(?P<q>["\'])application/ld\+json(?P=q)[^>]*>'
+    r"(?P<body>.*?)</script>",
+    re.DOTALL | re.IGNORECASE,
 )
 
 
+def _add_types(node: object, types: set[str]) -> None:
+    """Add a node's @type(s) to the set; @type may be a string or a list."""
+    if not isinstance(node, dict):
+        return
+    node_type = node.get("@type")
+    if isinstance(node_type, str):
+        types.add(node_type)
+    elif isinstance(node_type, list):
+        types.update(t for t in node_type if isinstance(t, str))
+
+
 def extract_graph_types(html: str) -> set[str]:
-    """Set of @type values across all JSON-LD @graph nodes (raises on bad JSON)."""
+    """Set of @type values across the JSON-LD nodes (raises on bad JSON).
+
+    Handles both the ``@graph`` form and a single top-level node, and a
+    ``@type`` that is a string or a list.
+    """
     types: set[str] = set()
-    for block in SCRIPT_RE.findall(html):
-        data = json.loads(block)
-        if not isinstance(data, dict):
-            continue
-        for node in data.get("@graph", []):
-            if not isinstance(node, dict):
-                continue
-            node_type = node.get("@type")
-            if node_type:
-                types.add(node_type)
+    for match in SCRIPT_RE.finditer(html):
+        data = json.loads(match.group("body"))
+        if isinstance(data, dict):
+            graph = data.get("@graph")
+            if isinstance(graph, list):
+                for node in graph:
+                    _add_types(node, types)
+            else:
+                _add_types(data, types)
+        elif isinstance(data, list):
+            for node in data:
+                _add_types(node, types)
     return types
 
 

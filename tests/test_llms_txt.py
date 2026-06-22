@@ -51,6 +51,25 @@ def test_render_updates_orders_newest_first():
     assert "- [B](https://example.com/epf/updates/2026-06-17-b/): newer" in out
 
 
+def test_render_updates_sorts_by_date_value_not_string():
+    # A garbage/empty date must not outrank a real date the way a raw string
+    # sort does ("not-a-date" > "2026-..." lexically); parsed dates win.
+    posts = [
+        {"stem": "baddate", "title": "B", "date": "not-a-date", "description": ""},
+        {"stem": "nodate", "title": "N", "date": "", "description": ""},
+        {"stem": "dated", "title": "D", "date": "2026-06-17", "description": ""},
+    ]
+    out = llms_txt.render_updates(posts, "https://example.com/epf/")
+    items = [line for line in out.splitlines() if line.startswith("- ")]
+    assert "/updates/dated/" in items[0]
+
+
+def test_render_updates_escapes_brackets_in_title():
+    posts = [{"stem": "s", "title": "Week [draft]", "date": "2026-01-01", "description": ""}]
+    out = llms_txt.render_updates(posts, "https://example.com/epf/")
+    assert r"[Week \[draft\]]" in out
+
+
 def test_render_updates_omits_empty_description():
     posts = [{"stem": "s", "title": "T", "date": "2026-01-01", "description": ""}]
     out = llms_txt.render_updates(posts, "https://example.com/epf/")

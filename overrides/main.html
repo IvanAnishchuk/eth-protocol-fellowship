@@ -41,4 +41,113 @@
   <meta name="twitter:description" content="{{ og_desc }}">
   <meta name="twitter:image" content="{{ og_image }}">
   <link rel="alternate" type="application/rss+xml" title="{{ config.site_name }} updates feed" href="{{ config.site_url }}updates/feed.xml">
+  {#- schema.org JSON-LD. Reuses og_title/og_desc set above. One @graph per
+      page: the page-specific nodes plus the shared WebSite and Person, so every
+      @id reference (#website, #ivan) resolves in-document. Keyed off the same
+      page type the meta block distinguishes. Skipped when there is no canonical
+      URL (e.g. 404). -#}
+  {% if page and page.canonical_url %}
+    {% set person = {
+      "@type": "Person",
+      "@id": config.site_url ~ "#ivan",
+      "name": config.extra.author_name,
+      "url": config.extra.author_url,
+      "sameAs": (config.extra.social | default([], true))
+        | rejectattr("icon", "equalto", "fontawesome/solid/rss")
+        | map(attribute="link") | list
+    } %}
+    {% set website = {
+      "@type": "WebSite",
+      "@id": config.site_url ~ "#website",
+      "name": config.site_name,
+      "url": config.site_url,
+      "description": config.site_description,
+      "publisher": {"@id": config.site_url ~ "#ivan"}
+    } %}
+    {% set ns = namespace(graph=[]) %}
+    {% if page.canonical_url == config.site_url %}
+      {% set ns.graph = [] %}
+    {% elif page.meta and page.meta.date
+            and (config.site_url ~ "updates/") in page.canonical_url %}
+      {% set post_title = page.meta.title | default(page.title | striptags, true) %}
+      {% set ns.graph = [
+        {
+          "@type": "BlogPosting",
+          "@id": page.canonical_url ~ "#post",
+          "headline": post_title,
+          "description": og_desc,
+          "datePublished": page.meta.date | string,
+          "url": page.canonical_url,
+          "mainEntityOfPage": page.canonical_url,
+          "author": {"@id": config.site_url ~ "#ivan"},
+          "publisher": {"@id": config.site_url ~ "#ivan"},
+          "image": og_image,
+          "articleSection": page.meta.categories | default([], true),
+          "keywords": page.meta.tags | default([], true)
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url},
+            {"@type": "ListItem", "position": 2, "name": "Updates", "item": config.site_url ~ "updates/"},
+            {"@type": "ListItem", "position": 3, "name": post_title, "item": page.canonical_url}
+          ]
+        }
+      ] %}
+    {% elif page.canonical_url and page.canonical_url == (config.site_url ~ "updates/") %}
+      {% set ns.graph = [
+        {
+          "@type": "Blog",
+          "@id": page.canonical_url ~ "#blog",
+          "name": config.site_name ~ " - Updates",
+          "url": page.canonical_url,
+          "description": og_desc,
+          "publisher": {"@id": config.site_url ~ "#ivan"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url},
+            {"@type": "ListItem", "position": 2, "name": "Updates", "item": page.canonical_url}
+          ]
+        }
+      ] %}
+    {% elif page.canonical_url and page.canonical_url == (config.site_url ~ "about/") %}
+      {% set ns.graph = [
+        {
+          "@type": "ProfilePage",
+          "@id": page.canonical_url ~ "#profile",
+          "url": page.canonical_url,
+          "mainEntity": {"@id": config.site_url ~ "#ivan"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url},
+            {"@type": "ListItem", "position": 2, "name": "About", "item": page.canonical_url}
+          ]
+        }
+      ] %}
+    {% else %}
+      {% set ns.graph = [
+        {
+          "@type": "WebPage",
+          "@id": page.canonical_url ~ "#webpage",
+          "url": page.canonical_url,
+          "name": og_title,
+          "description": og_desc,
+          "isPartOf": {"@id": config.site_url ~ "#website"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": config.site_url},
+            {"@type": "ListItem", "position": 2, "name": og_title, "item": page.canonical_url}
+          ]
+        }
+      ] %}
+    {% endif %}
+    {% set ns.graph = ns.graph + [website, person] %}
+    <script type="application/ld+json">{{ {"@context": "https://schema.org", "@graph": ns.graph} | tojson }}</script>
+  {% endif %}
 {% endblock %}

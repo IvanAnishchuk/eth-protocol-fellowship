@@ -25,6 +25,13 @@ nav = [
     { "About" = "about.md" },
 ]
 
+[project.extra]
+# Author identity for the schema.org Person node emitted in
+# overrides/main.html. Kept here so the name and URL live in one place; the
+# Person's sameAs links are pulled from the social entries below.
+author_name = "Ivan Anishchuk"
+author_url = "https://ivananishchuk.com"
+
 # Updates (blog) generation for the zensical-updates sidecar (a namespace
 # zensical itself ignores). Posts live in updates/; the generated section is
 # written to docs/updates/ (gitignored) by `zensical-updates build` before the

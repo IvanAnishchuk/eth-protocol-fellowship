@@ -1,3 +1,5 @@
+<!-- cadence: remember, handoff-guard, solo-pm -->
+
 # eth-protocol-fellowship, Agent Notes
 
 Public site for Ivan Anishchuk's Ethereum Protocol Fellowship (EPF) cohort-seven
@@ -46,9 +48,9 @@ content outlives the fellowship as a public record.
     clean-room CC0 rewrite kept in its own repo (`IvanAnishchuk/zensical-updates`,
     package `zensical_updates`). It runs as a CLI pre-build step before
     `zensical build`, because zensical 0.0.45 does not yet discover
-    `zensical.plugins` entry points or call plugin hooks. Pulled into this site's
-    `pyproject.toml` once it ships; until then the Updates page is a static stub.
-    Posts are plain markdown, so content survives the swap.
+    `zensical.plugins` entry points or call plugin hooks. It is pinned in this
+    site's `pyproject.toml` (`zensical-updates>=0.1.5,<0.2`) and generates the live
+    Updates section. Posts are plain markdown, so content survives a future swap.
   - **Social cards:** a custom generation step (for example a small Python script
     using Pillow or cairosvg, or a port of Material's social-card logic) that
     emits a per-page Open Graph image and injects the `og:image` and

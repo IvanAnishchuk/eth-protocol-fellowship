@@ -122,10 +122,10 @@ continuously, so entries accumulate under [Unreleased].
 - Opted the repo into the shared cadence handoff convention with a tag in
   `CLAUDE.md` (`remember`, `handoff-guard`, `solo-pm`), and refreshed a stale
   `CLAUDE.md` note that still called the Updates section a static stub.
-- Bumped `zensical` to `>=0.0.46,<0.1` (was `>=0.0.45`). 0.0.46 improves search
-  result quality and disables several strict validation defaults (unresolved
-  references and footnotes); the build still passes `--strict` and uses
-  front-matter block lists, so the rendered output is unchanged.
+- Bumped `zensical` to `>=0.0.46,<0.1` (was `>=0.0.45`). 0.0.46 adds search
+  result excerpts, refreshes the UI assets, and disables several strict
+  validation defaults (unresolved references and footnotes). The build still
+  passes `--strict` with our front-matter block lists.
 
 ### Fixed
 

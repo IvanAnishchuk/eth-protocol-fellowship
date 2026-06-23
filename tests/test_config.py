@@ -21,6 +21,11 @@ def test_check_site_url_flags_non_string():
     assert "string" in problems[0]
 
 
+def test_check_site_url_flags_missing_host():
+    problems = _config.check_site_url("https://")
+    assert any("absolute URL" in p for p in problems)
+
+
 def test_site_url_from_config_reads_value(tmp_path):
     cfg = tmp_path / "zensical.toml"
     cfg.write_text('[project]\nsite_url = "https://example.com/x/"\n', encoding="utf-8")
@@ -44,3 +49,11 @@ def test_site_url_problems_reports_missing_key_without_crashing(tmp_path):
 def test_site_url_problems_reports_missing_file_without_crashing(tmp_path):
     problems = _config.site_url_problems(tmp_path / "nope.toml")
     assert problems
+
+
+def test_site_url_problems_reports_invalid_utf8_without_crashing(tmp_path):
+    cfg = tmp_path / "zensical.toml"
+    cfg.write_bytes(b"\xff\xfe\x00")
+    problems = _config.site_url_problems(cfg)
+    assert problems
+    assert "UTF-8" in problems[0]

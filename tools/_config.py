@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import tomllib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "zensical.toml"
@@ -37,7 +38,8 @@ def check_site_url(site_url: object) -> list[str]:
     if not isinstance(site_url, str):
         return [f"site_url must be a string: {site_url!r}"]
     problems: list[str] = []
-    if not site_url.startswith(("http://", "https://")):
+    parts = urlsplit(site_url)
+    if parts.scheme not in {"http", "https"} or not parts.netloc:
         problems.append(
             f"site_url must be an absolute URL (scheme and host): {site_url!r}"
         )
@@ -60,6 +62,8 @@ def site_url_problems(config_path: Path = CONFIG) -> list[str]:
         site_url = site_url_from_config(config_path)
     except OSError as exc:
         return [f"cannot read config {config_path}: {exc}"]
+    except UnicodeDecodeError as exc:
+        return [f"invalid UTF-8 in {config_path}: {exc}"]
     except tomllib.TOMLDecodeError as exc:
         return [f"invalid TOML in {config_path}: {exc}"]
     except (KeyError, TypeError):

@@ -122,6 +122,10 @@ continuously, so entries accumulate under [Unreleased].
 - Opted the repo into the shared cadence handoff convention with a tag in
   `CLAUDE.md` (`remember`, `handoff-guard`, `solo-pm`), and refreshed a stale
   `CLAUDE.md` note that still called the Updates section a static stub.
+- Bumped `zensical` to `>=0.0.46,<0.1` (was `>=0.0.45`). 0.0.46 adds search
+  result excerpts, refreshes the UI assets, and disables several strict
+  validation defaults (unresolved references and footnotes). The build still
+  passes `--strict` with our front-matter block lists.
 
 ### Fixed
 
@@ -133,6 +137,13 @@ continuously, so entries accumulate under [Unreleased].
   to `>=0.1.2,<0.2`: 0.1.0/0.1.1 emitted site-root-absolute URLs (`/updates/...`)
   that 404'd on the project Pages site served under `/eth-protocol-fellowship/`;
   0.1.2 derives the prefix from `site_url`.
+
+### Security
+
+- Bumped the `pytest` dev dependency to `>=9.0.3,<10` (was `>=8,<9`) to clear a
+  Dependabot alert: earlier pytest resolves temporary directories through a
+  predictable, world-accessible path. It is test-only and never ships to the
+  site. The unit tests pass on pytest 9.
 
 ### Notes
 

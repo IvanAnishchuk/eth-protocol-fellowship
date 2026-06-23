@@ -21,7 +21,9 @@ dependencies = [
 [dependency-groups]
 # Test-only. CI installs with --no-dev; run locally with `uv run pytest`.
 dev = [
-    "pytest>=8,<9",
+    # 9.0.3 is the security floor: earlier pytest resolves tmp directories
+    # through a predictable, world-accessible path (Dependabot alert).
+    "pytest>=9.0.3,<10",
 ]
 
 [tool.pytest.ini_options]

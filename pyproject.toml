@@ -21,7 +21,7 @@ dependencies = [
 [dependency-groups]
 # Test-only. CI installs with --no-dev; run locally with `uv run pytest`.
 dev = [
-    "pytest>=8,<9",
+    "pytest>=9.0.3,<10",
 ]
 
 [tool.pytest.ini_options]

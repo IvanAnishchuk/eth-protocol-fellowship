@@ -86,11 +86,14 @@ content outlives the fellowship as a public record.
 - Run `uv run zensical-updates build` before previewing or building, so the
   generated `docs/updates/` exists. Use `uv run zensical serve` for local
   preview; `uv run zensical-updates build && uv run zensical build --clean
-  --strict && uv run python tools/social_card.py && uv run python
-  tools/llms_txt.py && uv run python tools/check_jsonld.py` is the gate
-  (social_card.py rasterizes the site-wide card, llms_txt.py writes
-  `site/llms.txt`, check_jsonld.py validates the structured data). Run
-  `uv run pytest` for the generator unit tests.
+  --strict && uv run python tools/sitemap_merge.py && uv run python
+  tools/social_card.py && uv run python tools/llms_txt.py && uv run python
+  tools/check_jsonld.py` is the gate (sitemap_merge.py unions zensical's
+  nav-only sitemap and the generated Updates section sitemap into a single
+  `site/sitemap.xml`, social_card.py rasterizes the site-wide card,
+  llms_txt.py writes `site/llms.txt`, check_jsonld.py validates the structured
+  data; the output writers go through `tools/_atomic.py` for atomic writes).
+  Run `uv run pytest` for the generator unit tests.
 
 ## Project board
 

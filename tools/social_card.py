@@ -27,6 +27,8 @@ import os
 import tempfile
 from pathlib import Path
 
+from _atomic import write_bytes
+
 ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SVG = ROOT / "docs" / "assets" / "social-card-bg.svg"
 DEFAULT_OUT = ROOT / "site" / "assets" / "social-card.png"
@@ -62,17 +64,16 @@ def render(svg_path: Path, out_path: Path, fonts_dir: Path = FONTS_DIR) -> Path:
     # Imported after FONTCONFIG_FILE is set so cairo picks up the config.
     import cairosvg
 
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    cairosvg.svg2png(
+    data = cairosvg.svg2png(
         url=str(svg_path),
-        write_to=str(out_path),
         output_width=WIDTH,
         output_height=HEIGHT,
     )
 
     # Verify dimensions straight from the PNG IHDR (no extra dependency): an
     # 8-byte signature, then the IHDR chunk carrying big-endian width/height.
-    data = out_path.read_bytes()
+    # Checking the rendered bytes before the write means a bad render never
+    # lands at out_path.
     if data[:8] != b"\x89PNG\r\n\x1a\n" or data[12:16] != b"IHDR":
         raise SystemExit("social card is not a valid PNG")
     width = int.from_bytes(data[16:20], "big")
@@ -81,6 +82,7 @@ def render(svg_path: Path, out_path: Path, fonts_dir: Path = FONTS_DIR) -> Path:
         raise SystemExit(f"social card is {width}x{height}, expected {WIDTH}x{HEIGHT}")
     if len(data) < 5_000:
         raise SystemExit(f"social card is only {len(data)} bytes; render looks empty")
+    write_bytes(out_path, data)
     print(f"social card: {out_path} ({width}x{height}, {len(data)} bytes)")
     return out_path
 

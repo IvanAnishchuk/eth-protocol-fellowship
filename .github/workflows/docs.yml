@@ -77,6 +77,15 @@ jobs:
         # `uv run` re-sync (which would drop --no-dev).
         run: uv run --no-sync zensical build --clean --strict
 
+      - name: Merge sitemaps
+        # zensical's sitemap covers its nav pages only; the sidecar writes a
+        # sitemap for the Updates section at site/updates/sitemap.xml. This
+        # unions every <loc> under site/ into a single de-duplicated
+        # site/sitemap.xml, so a crawler reaching /sitemap.xml discovers the
+        # posts. Runs after the build (which wipes site/) and on PRs so a broken
+        # merge fails the gate.
+        run: uv run --no-sync python tools/sitemap_merge.py
+
       - name: Generate social card
         # Rasterizes docs/assets/social-card-bg.svg into the built tree at
         # site/assets/social-card.png (referenced by overrides/main.html). Runs

@@ -14,13 +14,13 @@ from the actual posts.
 
 from __future__ import annotations
 
-import tomllib
 from datetime import date
 from pathlib import Path
 
 import yaml
 
 from _atomic import write_text
+from _config import site_url_from_config
 
 ROOT = Path(__file__).resolve().parent.parent
 HEADER = ROOT / "tools" / "llms.head.md"
@@ -96,11 +96,6 @@ def splice(header: str, section: str, marker: str = MARKER) -> str:
     if marker not in header:
         raise ValueError(f"marker {marker!r} not found in header")
     return header.replace(marker, section)
-
-
-def site_url_from_config(config_path: Path) -> str:
-    data = tomllib.loads(config_path.read_text(encoding="utf-8"))
-    return data["project"]["site_url"]
 
 
 def build() -> str:

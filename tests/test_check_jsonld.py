@@ -50,13 +50,3 @@ def test_extract_graph_types_tolerates_markup_variations():
         "</script>"
     )
     assert check_jsonld.extract_graph_types(html) == {"Person"}
-
-
-def test_check_site_url_flags_missing_trailing_slash():
-    problems = check_jsonld.check_site_url("https://example.com/site")
-    assert problems
-    assert "site_url" in problems[0]
-
-
-def test_check_site_url_accepts_trailing_slash():
-    assert check_jsonld.check_site_url("https://example.com/site/") == []

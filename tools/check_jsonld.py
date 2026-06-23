@@ -3,7 +3,9 @@
 
 Walks the built site/ tree, parses every ``<script type="application/ld+json">``
 block (failing on any that is not valid JSON), and asserts that the key page
-types carry the expected schema.org @types. Run after ``zensical build``:
+types carry the expected schema.org @types. Also asserts the ``site_url``
+invariant the JSON-LD URLs are built from (see tools/_config.py). Run after
+``zensical build``:
 
     uv run python tools/check_jsonld.py
 
@@ -16,6 +18,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from _config import site_url_problems
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
@@ -65,7 +69,7 @@ def extract_graph_types(html: str) -> set[str]:
 
 def check() -> list[str]:
     """Return a list of problem strings; empty means all good."""
-    problems: list[str] = []
+    problems: list[str] = site_url_problems()
 
     def require(rel: str, expected: set[str]) -> None:
         path = SITE / rel

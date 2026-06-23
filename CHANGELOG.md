@@ -115,6 +115,13 @@ continuously, so entries accumulate under [Unreleased].
   `site/` into one de-duplicated `site/sitemap.xml`, so a crawler reading
   `/sitemap.xml` discovers every dev-update post. The merge is idempotent and
   writes no wall-clock value, so rebuilding the same content is byte-identical.
+- A guard on the `site_url` trailing slash. `overrides/main.html` and the build
+  tools form absolute URLs by concatenating onto `config.site_url` (for example
+  `config.site_url ~ "updates/"`), so dropping its trailing slash would corrupt
+  the og:image path, the RSS href, and every JSON-LD breadcrumb and `@id` at
+  once. The template is MiniJinja and has no string methods to self-correct, so
+  `tools/check_jsonld.py` now reads the config and fails the gate when the slash
+  is missing, and `zensical.toml` documents the invariant inline.
 
 ### Changed
 

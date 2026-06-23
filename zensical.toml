@@ -1,6 +1,9 @@
 [project]
 site_name = "Ivan Anishchuk, EPF"
 site_description = "Ivan Anishchuk's Ethereum Protocol Fellowship cohort-seven dev updates and project notes."
+# Must end with a trailing slash: overrides/main.html and the tools build
+# absolute URLs by concatenating onto it. tools/check_jsonld.py fails the gate
+# if the slash is dropped.
 site_url = "https://ivananishchuk.github.io/eth-protocol-fellowship/"
 repo_url = "https://github.com/IvanAnishchuk/eth-protocol-fellowship"
 repo_name = "IvanAnishchuk/eth-protocol-fellowship"

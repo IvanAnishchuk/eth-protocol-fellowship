@@ -3,7 +3,9 @@
 
 Walks the built site/ tree, parses every ``<script type="application/ld+json">``
 block (failing on any that is not valid JSON), and asserts that the key page
-types carry the expected schema.org @types. Run after ``zensical build``:
+types carry the expected schema.org @types. Also asserts the ``site_url``
+trailing-slash invariant the JSON-LD URLs are built from (see check_site_url).
+Run after ``zensical build``:
 
     uv run python tools/check_jsonld.py
 
@@ -15,11 +17,13 @@ from __future__ import annotations
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = ROOT / "site"
 UPDATES_SRC = ROOT / "updates"
+CONFIG = ROOT / "zensical.toml"
 
 # Tolerant of attribute order, quoting, and extra attributes (e.g. a CSP
 # nonce): a markup tweak should not silently match zero blocks and mis-report.
@@ -63,9 +67,36 @@ def extract_graph_types(html: str) -> set[str]:
     return types
 
 
+def site_url_from_config(config_path: Path) -> str:
+    """Read ``project.site_url`` from the zensical config."""
+    # TODO(#24): same two-line read lives in tools/llms_txt.py; extract a
+    # shared tools/_config.py and import it from both.
+    data = tomllib.loads(config_path.read_text(encoding="utf-8"))
+    return data["project"]["site_url"]
+
+
+def check_site_url(site_url: str) -> list[str]:
+    """Problems with the configured ``site_url``; empty means it holds the invariant.
+
+    The site relies on ``site_url`` ending in ``/``: overrides/main.html (a
+    MiniJinja template with no string methods) builds the og:image, the RSS
+    href, and the JSON-LD breadcrumb/``@id`` URLs by concatenating onto it
+    (``config.site_url ~ "updates/"``), and the homepage JSON-LD branch matches
+    ``page.canonical_url == config.site_url``. Drop the slash and all of those
+    corrupt at once, silently: this checker only asserts @type presence, so the
+    malformed URLs would otherwise pass the gate green.
+    """
+    if not site_url.endswith("/"):
+        return [
+            f"site_url must end with '/' (templates concatenate paths onto it): "
+            f"{site_url!r}"
+        ]
+    return []
+
+
 def check() -> list[str]:
     """Return a list of problem strings; empty means all good."""
-    problems: list[str] = []
+    problems: list[str] = check_site_url(site_url_from_config(CONFIG))
 
     def require(rel: str, expected: set[str]) -> None:
         path = SITE / rel

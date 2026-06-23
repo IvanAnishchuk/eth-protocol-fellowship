@@ -35,8 +35,8 @@ _LOC = f"{{{NS}}}loc"
 def extract_locs(xml_text: str) -> list[str]:
     """The ``<loc>`` of each ``<url>`` in a sitemap, in document order.
 
-    Reads only ``<url>`` entries, so a ``<sitemapindex>``'s ``<sitemap><loc>``
-    references (which point at other sitemaps, not pages) are ignored.
+    Only ``<url>`` entries are read, so a ``<sitemapindex>``'s ``<sitemap><loc>``
+    entries (which reference other sitemaps) are skipped.
     """
     root = ET.fromstring(xml_text)
     locs = []

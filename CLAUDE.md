@@ -49,7 +49,7 @@ content outlives the fellowship as a public record.
     package `zensical_updates`). It runs as a CLI pre-build step before
     `zensical build`, because zensical 0.0.45 does not yet discover
     `zensical.plugins` entry points or call plugin hooks. It is pinned in this
-    site's `pyproject.toml` (`zensical-updates>=0.1.5,<0.2`) and generates the live
+    site's `pyproject.toml` (`zensical-updates>=0.1.6,<0.2`) and generates the live
     Updates section. Posts are plain markdown, so content survives a future swap.
   - **Social cards:** a custom generation step (for example a small Python script
     using Pillow or cairosvg, or a port of Material's social-card logic) that

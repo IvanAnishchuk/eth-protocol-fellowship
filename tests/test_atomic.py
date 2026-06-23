@@ -37,10 +37,21 @@ def test_write_leaves_no_temp_file(tmp_path):
     assert [p.name for p in tmp_path.iterdir()] == ["out.txt"]
 
 
-def test_write_sets_readable_mode(tmp_path):
+def test_write_new_file_follows_umask(tmp_path):
     dest = tmp_path / "out.txt"
     _atomic.write_text(dest, "hello")
-    assert (dest.stat().st_mode & 0o777) == 0o644
+    mask = os.umask(0)
+    os.umask(mask)
+    assert (dest.stat().st_mode & 0o777) == (0o666 & ~mask)
+
+
+def test_write_preserves_existing_mode(tmp_path):
+    dest = tmp_path / "out.txt"
+    dest.write_text("old", encoding="utf-8")
+    os.chmod(dest, 0o600)
+    _atomic.write_text(dest, "new")
+    # An overwrite keeps the destination's prior permissions, like a normal write.
+    assert (dest.stat().st_mode & 0o777) == 0o600
 
 
 def test_encode_error_writes_nothing(tmp_path):

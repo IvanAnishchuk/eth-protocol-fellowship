@@ -23,7 +23,7 @@ def test_extract_locs_reads_urls_in_order():
 
 
 def test_extract_locs_ignores_index_entries():
-    # A <sitemapindex> points at other sitemaps, not pages; those locs are skipped.
+    # A <sitemapindex> points only at other sitemaps; those locs are skipped.
     index = f'<sitemapindex xmlns="{NS}"><sitemap><loc>https://x/s.xml</loc></sitemap></sitemapindex>'
     assert sitemap_merge.extract_locs(index) == []
 

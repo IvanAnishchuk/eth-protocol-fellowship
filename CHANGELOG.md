@@ -30,7 +30,7 @@ continuously, so entries accumulate under [Unreleased].
   wordmark and thin header/footer rules. Typography is Hanken Grotesk (body),
   Archivo (display headings), and JetBrains Mono (code).
 - SEO base: per-page meta descriptions and canonical URLs from `site_url`;
-  zensical emits `sitemap.xml` natively, so no extra build step is needed.
+  zensical emits `sitemap.xml` natively for its nav pages.
 - Structured data for discovery: schema.org JSON-LD on every page, emitted from
   `overrides/main.html` as a per-page `@graph` (`BlogPosting` on posts,
   `WebSite` and `Person` on the home page, `Blog` on the Updates index,
@@ -107,6 +107,14 @@ continuously, so entries accumulate under [Unreleased].
   dependencies and the GitHub Actions workflows, on a weekly Monday schedule.
   Production and dev Python bumps land as grouped PRs, and action bumps land as
   one grouped PR.
+- Sitemap coverage for the Updates section. zensical's native `sitemap.xml`
+  lists its nav pages only, so the generated posts and taxonomy pages never
+  reached a crawler. The `zensical-updates` 0.1.6 sidecar now writes a sitemap
+  for the section at `site/updates/sitemap.xml`, and a new build step,
+  `tools/sitemap_merge.py`, unions every `<loc>` across the sitemaps under
+  `site/` into one de-duplicated `site/sitemap.xml`, so a crawler reading
+  `/sitemap.xml` discovers every dev-update post. The merge is idempotent and
+  writes no wall-clock value, so rebuilding the same content is byte-identical.
 
 ### Changed
 
@@ -117,6 +125,15 @@ continuously, so entries accumulate under [Unreleased].
   3.11/3.12/3.13 and requires Python 3.14, which matches this site's own
   3.14-only floor. The generated output is unchanged: the Updates section and
   `feed.xml` render the same as under 0.1.3.
+- Bumped `zensical-updates` to `>=0.1.6,<0.2` for the section sitemap (see the
+  sitemap entry under Added). The generated Updates pages and `feed.xml` render
+  the same as under 0.1.5.
+- The build's output writers now write atomically through a shared
+  `tools/_atomic.py` helper (a temp file plus `os.replace`): `sitemap_merge.py`,
+  `llms_txt.py`, and `social_card.py` no longer leave a half-written
+  `sitemap.xml`, `llms.txt`, or social card if a build is killed mid-write. The
+  social card is also validated in memory before it is published, so a bad
+  render never lands in the tree.
 - `docs/assets/logo.svg` now uses the brand gradient (was white-only), so the
   mark stays visible on both the light and dark headers.
 - Opted the repo into the shared cadence handoff convention with a tag in

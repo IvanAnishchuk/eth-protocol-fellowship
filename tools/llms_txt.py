@@ -20,6 +20,8 @@ from pathlib import Path
 
 import yaml
 
+from _atomic import write_text
+
 ROOT = Path(__file__).resolve().parent.parent
 HEADER = ROOT / "tools" / "llms.head.md"
 UPDATES_DIR = ROOT / "updates"
@@ -109,9 +111,8 @@ def build() -> str:
 
 
 def main() -> None:
-    OUT.parent.mkdir(parents=True, exist_ok=True)
     content = build()
-    OUT.write_text(content, encoding="utf-8")
+    write_text(OUT, content)
     print(f"llms.txt: {OUT} ({len(content)} bytes)")
 
 

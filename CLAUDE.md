@@ -49,7 +49,7 @@ content outlives the fellowship as a public record.
     package `zensical_updates`). It runs as a CLI pre-build step before
     `zensical build`, because zensical 0.0.45 does not yet discover
     `zensical.plugins` entry points or call plugin hooks. It is pinned in this
-    site's `pyproject.toml` (`zensical-updates>=0.1.5,<0.2`) and generates the live
+    site's `pyproject.toml` (`zensical-updates>=0.1.6,<0.2`) and generates the live
     Updates section. Posts are plain markdown, so content survives a future swap.
   - **Social cards:** a custom generation step (for example a small Python script
     using Pillow or cairosvg, or a port of Material's social-card logic) that
@@ -86,11 +86,14 @@ content outlives the fellowship as a public record.
 - Run `uv run zensical-updates build` before previewing or building, so the
   generated `docs/updates/` exists. Use `uv run zensical serve` for local
   preview; `uv run zensical-updates build && uv run zensical build --clean
-  --strict && uv run python tools/social_card.py && uv run python
-  tools/llms_txt.py && uv run python tools/check_jsonld.py` is the gate
-  (social_card.py rasterizes the site-wide card, llms_txt.py writes
-  `site/llms.txt`, check_jsonld.py validates the structured data). Run
-  `uv run pytest` for the generator unit tests.
+  --strict && uv run python tools/sitemap_merge.py && uv run python
+  tools/social_card.py && uv run python tools/llms_txt.py && uv run python
+  tools/check_jsonld.py` is the gate (sitemap_merge.py unions zensical's
+  nav-only sitemap and the generated Updates section sitemap into a single
+  `site/sitemap.xml`, social_card.py rasterizes the site-wide card,
+  llms_txt.py writes `site/llms.txt`, check_jsonld.py validates the structured
+  data; the output writers go through `tools/_atomic.py` for atomic writes).
+  Run `uv run pytest` for the generator unit tests.
 
 ## Project board
 

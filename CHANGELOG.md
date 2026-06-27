@@ -22,6 +22,10 @@ continuously, so entries accumulate under [Unreleased].
 - The Week-0 dev update at `updates/2026-06-17-week-0.md`, Ivan's first cohort-7 update
   (background, the week's scoping and formal-verification survey, areas and what's next,
   resources). Body written by Ivan per the EPF no-LLM rule.
+- The Week-1 dev update at `updates/2026-06-22-week-1.md`: extracting Rust to Lean 4 with
+  Charon+Aeneas and proving sorry-free slices (moonglass SSZ round-trips, leanVM arithmetic),
+  plus a differential SSZ cross-check against etheorem. Body written by Ivan per the EPF
+  no-LLM rule.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

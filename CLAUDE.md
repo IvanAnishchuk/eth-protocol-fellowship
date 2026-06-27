@@ -117,6 +117,17 @@ messages, and PR text.
 - Avoid AI-tell vocabulary (delve, leverage, robust, seamless, tapestry,
   landscape, and similar).
 
+## Commits
+
+- Sign off every commit (DCO): use `git commit -s` so each carries a
+  `Signed-off-by:` trailer. This is on top of GPG signing, which stays on.
+- Keep the message repo-scale. The subject is the action (`docs: add the Week-1
+  dev update`); the body is one short sentence of context (where it lands, sibling
+  files touched) with a few words on the content. The CHANGELOG records what
+  changed, so do not re-narrate it here, and skip front-matter and filename
+  mechanics. Do not keep asserting "body written by Ivan" and similar: the no-LLM
+  rule under Hard rules already covers provenance.
+
 ## Repositories and references
 
 This site documents the **etheorem** project (Lean 4 formal verification of

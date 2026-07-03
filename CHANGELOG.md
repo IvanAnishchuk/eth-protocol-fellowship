@@ -26,6 +26,10 @@ continuously, so entries accumulate under [Unreleased].
   Charon+Aeneas and proving sorry-free slices (moonglass SSZ round-trips, leanVM arithmetic),
   plus a differential SSZ cross-check against etheorem. Body written by Ivan per the EPF
   no-LLM rule.
+- The Week-2 dev update at `updates/2026-07-03-week-2.md`: etheorem's Heze (FOCIL) fork
+  layer up for review, the first merged etheorem PRs, and the differential harness
+  (consensus-diff plus moonglass-runner) cross-checking etheorem against moonglass over
+  the official vectors.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

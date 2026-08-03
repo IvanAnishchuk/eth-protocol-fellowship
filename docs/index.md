@@ -15,10 +15,11 @@ and notes on the project, and it keeps a stable home after the fellowship ends.
 
 ## The work
 
-The current focus is [etheorem](https://github.com/etheorem/etheorem), a Lean 4
-formalization of Ethereum's Simple Serialize (SSZ). SSZ is the serialization and
-Merkleization scheme the consensus layer runs on, so a precise account of how it
-behaves is useful to every consensus client.
+The current focus is [etheorem](https://github.com/etheorem/etheorem), Ethereum's
+consensus spec written in Lean 4: one artifact that runs, passes the official test
+vectors, and carries machine-checked proofs. I work the consensus layer, everything
+above the wire format, from arithmetic and structural invariants up through
+merkleization, the validator shuffle, and fork choice.
 
 [Read more about the project.](project.md)
 
@@ -31,7 +32,7 @@ behaves is useful to every consensus client.
 
 Out on the wider web:
 
-- [etheorem](https://github.com/etheorem/etheorem), the Lean 4 SSZ verification
-  project.
+- [etheorem](https://github.com/etheorem/etheorem), the Lean 4 formalization of
+  Ethereum's consensus spec.
 - [EPF cohort seven](https://github.com/eth-protocol-fellows/cohort-seven), the
   fellowship program repo and its dev-update log.

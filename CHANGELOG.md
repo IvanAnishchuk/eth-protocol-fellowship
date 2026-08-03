@@ -160,6 +160,12 @@ continuously, so entries accumulate under [Unreleased].
 - The home page "The work" section and its etheorem link now describe the
   consensus spec rather than SSZ, matching the project page. SSZ is Raj Gill's
   layer of the joint proposal.
+- Upgraded the locked dependencies: `zensical` 0.0.51 to 0.0.52,
+  `pymdown-extensions` 11.0 to 11.0.1, `typer` 0.26.7 to 0.27.1, `cffi` 2.0.0 to
+  2.1.0, `markdown` 3.10.2 to 3.10.3, `deepmerge` 2.0 to 2.1.0, `click` 8.4.1 to
+  8.4.2, and `annotated-doc` 0.0.4 to 0.0.5. Lockfile only, no version bounds
+  moved in `pyproject.toml`. The pinned action SHAs in
+  `.github/workflows/docs.yml` are already at their latest releases.
 - Python 3.14-only build environment. `requires-python` is now `==3.14.*` (was
   `>=3.13`), the `uv.lock` is re-resolved for 3.14, and CI installs Python 3.14
   (`.github/workflows/docs.yml`). The dev `.venv` already ran 3.14.

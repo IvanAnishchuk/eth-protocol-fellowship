@@ -30,6 +30,9 @@ continuously, so entries accumulate under [Unreleased].
   layer up for review, the first merged etheorem PRs, and the differential harness
   (consensus-diff plus moonglass-runner) cross-checking etheorem against moonglass over
   the official vectors.
+- The Week-5 dev update at `updates/2026-07-27-week-5.md`: the etheorem verification
+  roadmap opened upstream as a PR, a joint cohort-seven proposal with Raj Gill split by
+  layer, and where the three open consensus-side PRs stand.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and
@@ -134,8 +137,25 @@ continuously, so entries accumulate under [Unreleased].
   crashing with a traceback. `tools/llms_txt.py` reads `site_url` through the
   same module, and `zensical.toml` documents the invariant inline.
 
+- The proposal slide deck at `docs/slides/etheorem-proposal-deck.pdf`, served as a
+  static asset at `/slides/etheorem-proposal-deck.pdf` so updates and the project
+  page can link it at a stable URL. Ten pages, from the 29 July 2026 project
+  presentation. Linked from a post as `../slides/etheorem-proposal-deck.pdf`:
+  links resolve against the source file's location in `docs/`, not the rendered
+  URL depth. Note the `--strict` link check does not validate non-Markdown asset
+  links, so a broken deck link passes the gate silently.
+
 ### Changed
 
+- The project page is now the full etheorem project description: what the Lean 4
+  formalization is for, the prior-verification landscape and the four open
+  problems, the consensus-layer half of the joint proposal with Raj Gill, the
+  merkle-branch completeness theorem, the month-by-month roadmap, current upstream
+  status, and the moonglass cross-check as a side line. Replaces the provisional
+  SSZ-only framing written before the proposal landed.
+- The home page "The work" section and its etheorem link now describe the
+  consensus spec rather than SSZ, matching the project page. SSZ is Raj Gill's
+  layer of the joint proposal.
 - Python 3.14-only build environment. `requires-python` is now `==3.14.*` (was
   `>=3.13`), the `uv.lock` is re-resolved for 3.14, and CI installs Python 3.14
   (`.github/workflows/docs.yml`). The dev `.venv` already ran 3.14.

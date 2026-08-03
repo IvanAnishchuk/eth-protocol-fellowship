@@ -33,6 +33,10 @@ continuously, so entries accumulate under [Unreleased].
 - The Week-5 dev update at `updates/2026-07-27-week-5.md`: the etheorem verification
   roadmap opened upstream as a PR, a joint cohort-seven proposal with Raj Gill split by
   layer, and where the three open consensus-side PRs stand.
+- The Week-6 dev update at `updates/2026-08-03-week-6.md`: the merkle-branch
+  completeness proof upstream as etheorem #42, the three-branch stack behind it and
+  the zero-hash divergence holding layer 3, the proposal presented and merged, and a
+  `jitsi-meet-desktop` ebuild aside. Links the proposal deck.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

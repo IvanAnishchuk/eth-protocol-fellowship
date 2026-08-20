@@ -37,6 +37,10 @@ continuously, so entries accumulate under [Unreleased].
   completeness proof upstream as etheorem #42, the three-branch stack behind it and
   the zero-hash divergence holding layer 3, the proposal presented and merged, and a
   `jitsi-meet-desktop` ebuild aside. Links the proposal deck.
+- The Week-8 dev update at `updates/2026-08-17-week-8.md`: the Heze (EIP-7805 FOCIL) fork
+  layer merged and conformance-green at both presets, and the Merkle-proof completeness
+  result restacked as five reviewable PRs, from the branch-root helper up to
+  `hash_tree_root` agreement.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

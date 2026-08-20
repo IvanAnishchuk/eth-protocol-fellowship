@@ -170,6 +170,13 @@ continuously, so entries accumulate under [Unreleased].
   8.4.2, and `annotated-doc` 0.0.4 to 0.0.5. Lockfile only, no version bounds
   moved in `pyproject.toml`. The pinned action SHAs in
   `.github/workflows/docs.yml` are already at their latest releases.
+- Upgraded the locked dependencies again: `zensical` 0.0.53 to 0.0.56,
+  `deepmerge` 2.1.0 to 3.0, `pygments` 2.20.0 to 2.21.0, `lxml` 6.1.1 to 6.1.2,
+  `packaging` 26.2 to 26.3, `cffi` 2.1.0 to 2.1.1, and `webencodings` 0.5.1 to
+  0.6.1. Lockfile only, no bounds moved in `pyproject.toml`. The build gate is
+  green and the rendered pages match the previous output except for the zensical
+  `generator` meta tag and the theme JS bundle hash, which grew by 624 bytes
+  across the three zensical releases.
 - Python 3.14-only build environment. `requires-python` is now `==3.14.*` (was
   `>=3.13`), the `uv.lock` is re-resolved for 3.14, and CI installs Python 3.14
   (`.github/workflows/docs.yml`). The dev `.venv` already ran 3.14.

@@ -41,6 +41,16 @@ continuously, so entries accumulate under [Unreleased].
   layer merged and conformance-green at both presets, and the Merkle-proof completeness
   result restacked as five reviewable PRs, from the branch-root helper up to
   `hash_tree_root` agreement.
+- The Week-10 dev update at `updates/2026-08-31-week-10.md`: the balance mutators proved
+  not to wrap, five throw-faithful PRs that make spec functions reject on `uint64`
+  overflow the way pyspec does, three invariant PRs, and the roadmap and axiom
+  allow-list fix merged.
+- The Week-12 dev update at `updates/2026-09-14-week-12.md`: the pure-path Merkle results
+  on main via etheorem #100, the old cached-tree stack closed, and the remainder in two
+  draft PRs (completeness on `merkleize`, nested container fields).
+- The Week-14 dev update at `updates/2026-09-28-week-14.md`: a new direction on what
+  FOCIL and ePBS guarantee together on the Heze fork body, three stacked PRs proving a
+  single-node inclusion dichotomy, and the hypotheses it rests on.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

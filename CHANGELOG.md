@@ -51,6 +51,12 @@ continuously, so entries accumulate under [Unreleased].
 - The Week-14 dev update at `updates/2026-09-28-week-14.md`: a new direction on what
   FOCIL and ePBS guarantee together on the Heze fork body, three stacked PRs proving a
   single-node inclusion dichotomy, and the hypotheses it rests on.
+- The Week-16 dev update at `updates/2026-10-12-week-16.md`: the FOCIL + ePBS result
+  extended to every honest node and the slots after the block, the shuffle proved a
+  permutation, and five stacked PRs.
+- The Week-18 dev update at `updates/2026-10-26-week-18.md`: Casper FFG accountable
+  safety on the Heze fork body, and honest nodes finalizing on the EMPTY side when a
+  payload fails the inclusion list.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

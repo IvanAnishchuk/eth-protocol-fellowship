@@ -211,6 +211,9 @@ continuously, so entries accumulate under [Unreleased].
   result excerpts, refreshes the UI assets, and disables several strict
   validation defaults (unresolved references and footnotes). The build still
   passes `--strict` with our front-matter block lists.
+- Upgraded all locked dependencies and raised the floors to match: `zensical`
+  `>=0.0.72`, `zensical-updates` `>=0.1.8` (keeps feed links working under
+  zensical 0.0.72), `pyyaml` `>=6.0.3`, `pytest` `>=9.1.1`.
 
 ### Fixed
 
@@ -229,6 +232,8 @@ continuously, so entries accumulate under [Unreleased].
   Dependabot alert: earlier pytest resolves temporary directories through a
   predictable, world-accessible path. It is test-only and never ships to the
   site. The unit tests pass on pytest 9.
+- Raised `cairosvg` to `>=2.9.1` and added `pillow>=13.0.0` (transitive via
+  cairosvg) to clear the open Dependabot alerts.
 
 ### Notes
 

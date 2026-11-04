@@ -57,6 +57,10 @@ continuously, so entries accumulate under [Unreleased].
 - The Week-18 dev update at `updates/2026-10-26-week-18.md`: Casper FFG accountable
   safety on the Heze fork body, and honest nodes finalizing on the EMPTY side when a
   payload fails the inclusion list.
+- The Week-19 dev update at `updates/2026-11-02-week-19.md`: a shadow node following a
+  devnet through the etheorem Fulu model, leanp2p work units merged, and the EPF Day talk.
+- The cohort-7 final report at `updates/2026-11-04-final-report.md` (a `project-update`),
+  dated EPF Day at Devcon 8.
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and

@@ -61,6 +61,9 @@ continuously, so entries accumulate under [Unreleased].
   devnet through the etheorem Fulu model, leanp2p work units merged, and the EPF Day talk.
 - The cohort-7 final report at `updates/2026-11-04-final-report.md` (a `project-update`),
   dated EPF Day at Devcon 8.
+- The Week-20 dev update at `updates/2026-11-16-week-20.md`: the EPF Day talk and leanp2p at
+  Machine-Checked Devcon Week, with both decks under `docs/slides/`
+  (`etheorem-epf-day-deck.pdf`, `leanp2p-hackathon-deck.pdf`).
 - Theme and branding: the indigo/violet identity over zensical's modern theme.
   A custom palette (`primary`/`accent` = `custom`) with a light and dark scheme,
   the brand stylesheet `docs/stylesheets/brand.css`, the logo and favicon, and
